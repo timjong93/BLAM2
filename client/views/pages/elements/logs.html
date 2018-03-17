@@ -1,0 +1,70 @@
+<template name="logs">
+	<div class="ibox" style="height:100%;">
+		<div class="ibox-title">
+			<div class="row">
+				<div class="col-md-8"><h5>Log</h5></div>
+				<div class="col-md-4"><div class="input-group"><input type="text" id="search_logs" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+	                    <button type="button" class="btn btn-sm btn-primary"> <i class="fa fa-times"></i></button> </span></div></div>
+            </div>
+
+			
+		</div>
+		<div class="ibox-content" style="height:80%;">
+			<div class="scrollRow" style="height: 100%; overflow-y: scroll;">
+				<div id="vertical-timeline" class="vertical-container light-timeline no-margins" style="width: 100%; padding: 0px 10px 0px 0px;">
+					{{#each logs}}
+					 {{#if ticket}}
+					    {{> ticket_log}}
+					  {{else}}
+					    {{>log}}
+					  {{/if}}
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		{{> log_input}}
+	</div>
+</template>
+
+<template name="log">
+	<div class="vertical-timeline-block">
+		<div class="vertical-timeline-icon navy-bg">
+			<i class="fa fa-comments"></i>
+		</div>
+
+		<div class="vertical-timeline-content">
+			<p style="margin: 0em;">{{{message}}}</p>
+			<span class="vertical-date"><small>{{createdBy}} - {{formatTime createdAt}}</small></span>
+		</div>
+	</div>
+</template>
+
+<template name="ticket_log">
+	<div class="vertical-timeline-block">
+		<div class="vertical-timeline-icon blue-bg">
+			<i class="fa fa-file-text"></i>
+		</div>
+
+		<div class="vertical-timeline-content">
+			<h2>{{ticket.title}}</h2>
+			<p style="margin: 0em;">{{{message}}}</p>
+			<span class="vertical-date"><small>{{createdBy}} - {{formatTime createdAt}}</small></span>
+		</div>
+	</div>
+</template>
+
+<template name="log_input">
+	<div class="ibox-content ibox-heading" style="height:15%;">
+		<form class="new-log"  style="height:100%;">
+			<div class="col-sm-10"  style="height:100%;">
+				<div id="log-message" class="form-control" contenteditable="true"  style="height:100%;"></div>
+			</div>
+			<div class="col-sm-2" style="padding-left: 0px;">
+				<button type="button" id="new-log-btn" class="btn btn-w-m btn-primary m-b-sm" style="min-width:0px; width: 100%;">Log</button>
+				{{#unless ticket_id}}
+				<button type="button" id="new-ticket-btn" class="btn btn-w-m btn-warning" style="min-width:0px; width: 100%;">Ticket</button>
+				{{/unless}}
+			</div>
+		</form>
+	</div>
+</template>

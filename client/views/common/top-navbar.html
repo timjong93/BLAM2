@@ -1,0 +1,43 @@
+<template name="topNavbar">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #2f4050">
+            <ul class="nav navbar-top-links navbar-left">
+                <li>
+                    <a class="" style="margin-left: 40px; font-size: 20px; padding: 15px 10px;">
+                        BLAM-II
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a class="">
+                        {{currentTime}}
+                    </a>
+                </li>
+                <li>
+                    <a class="">
+                        <i class="fa fa-user"></i> {{username}}
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-fullscreen">
+                        <i class="fa fa-desktop"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn-logout">
+                        <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+    </div>
+</template>
