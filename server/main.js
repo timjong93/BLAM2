@@ -5,11 +5,12 @@ import '/imports/api/tickets.js';
 import '/imports/api/users.js';
 
 Meteor.startup(() => {
-
-	Accounts.onCreateUser(function (options, user) {
-	    user.profile = {};
-	    // create a empty array to avoid the Exception while invoking method 'adminCheckAdmin' 
-	    user.emails = [];
-	    return user;
-	});
+if(!Meteor.users.find().count()) {
+    var options = {
+      username: 'admin', 
+      password: 'admin', 
+      email: 'admin@example.com'
+    };
+    Accounts.createUser(options);
+  }
 });

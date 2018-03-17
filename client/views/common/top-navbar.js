@@ -11,6 +11,9 @@ Template.topNavbar.helpers({
     username: function() {
         return Meteor.user().username;
       },
+    function: function() {
+        return Meteor.user().profile.function;
+      },
     currentTime: function() {
         return Chronos.moment().format('HH:mm:ss');
     }
