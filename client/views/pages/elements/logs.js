@@ -56,9 +56,6 @@ Template.log_input.events({
 	    messageHandles.forEach(function(handle){
 	    	var handle = Handles.findOne({callsign:{'$regex':handle, '$options' : 'i'}});
 	    	logHandles.push(handle._id);
-	    	Handles.update(handle._id, {
-		      $set: { lastLog: new Date() }
-		    });
 	    });
     }
 
@@ -92,9 +89,6 @@ Template.log_input.events({
 	    messageHandles.forEach(function(handle){
 	    	var handle = Handles.findOne({callsign:{'$regex':handle, '$options' : 'i'}});
 	    	logHandles.push(handle._id);
-	    	Handles.update(handle._id, {
-		      $set: { lastLog: new Date() }
-		    });
 	    });
     }
 

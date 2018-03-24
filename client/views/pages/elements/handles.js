@@ -31,9 +31,20 @@ Template.handles.helpers({
 			arrHandles = _.groupBy(arrHandles, 'subnet');
 			var arrResult  = []
 			for(var k in arrHandles){
-				arrResult.push({'subnet':k, handles: arrHandles[k]})
+				arrHandles[k].map(function(handle){
+					handle.lastLogNotify = false;
+					if (handle.lastLogLimit && (Chronos.moment(handle.lastLog).add(handle.lastLogLimit, 'm') < Chronos.moment())) {
+						handle.lastLogNotify = true;
+					}
+					return handle;
+				})
+				arrResult.push({
+					subnet:k, 
+					handles: arrHandles[k]
+				})
 			}
-			console.log(arrResult);
+	    // Tooltips demo
+	    $("[data-toggle=tooltip]").tooltip();
 			return arrResult;
 		}
 	  },

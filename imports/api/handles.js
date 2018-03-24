@@ -25,6 +25,11 @@ this.handleSchema = new SimpleSchema({
       }
     }
   },
+  lastLogLimit: {
+    type: Number,
+    label: "Time limit for notification if no interaction is logged in minutes, empty means disable notification",
+    optional: true
+  },  
   createdBy: {
         type: String,
         autoValue: function() {

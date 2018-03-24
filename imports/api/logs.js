@@ -27,6 +27,12 @@ Logs.allow({
   insert() { return true; }
 });
 
+Logs.before.insert(function (userId, doc) {
+  doc.handles.forEach(function(handle_id){
+    Handles.update(handle_id,{$set:{lastLog:new Date()}});
+  })
+});
+
 if (Meteor.isServer) {
   // This code only runs on the server
   Meteor.publish('logs', function logPublication() {
