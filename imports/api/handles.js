@@ -9,6 +9,22 @@ this.handleSchema = new SimpleSchema({
     type: Date,
     optional: true,
     },
+  icon: {
+    type: String,
+    allowedValues: ['car', 'bus', 'bicycle','motorcycle','ambulance','user','laptop'],
+    autoform: {
+      options: {
+        car: "car",
+        bus: "bus",
+        truck: 'truck',
+        ambulance: 'medical',
+        motorcycle: "motorcycle",
+        bicycle: "bicycle",
+        user: 'person',
+        laptop: 'controller'
+      }
+    }
+  },
   createdBy: {
         type: String,
         autoValue: function() {
