@@ -1,14 +1,10 @@
-Inspinia - Meteor version 2017
-version: 2.7.1
+# BLAM II
 
-Meteor.js is an open-source platform built on Node and MongoDB
-See documentation of Meteor to learn more: http://docs.meteor.com/#/full/
-Install Meteor: https://www.meteor.com/install
-Be sure that you have all setup - create the Meteor project and run the sample application: https://www.meteor.com/try
+Work in progess
 
-INSPINIA first run - just cd into Inspinia Meteor project and run the application with:
+## Install
+1. Clone this repo
+2. install meteorjs 
+3. run ```meteor ``` from the project repo.
 
-meteor
-
-This will grab the necessary packages, bundle all the css and js and start your application
-Go to http://localhost:3000 to see live version
+A default user admin, admin will be created if no users exist.
