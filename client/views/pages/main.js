@@ -1,3 +1,8 @@
+import '/imports/ui/plugins/common/common.min.js';
+import '/imports/ui/custom.min.js';
+import '/imports/ui/settings.js';
+import '/imports/ui/gleek.js';
+
 Template.main.rendered = function(){
 
     // Add gray color for background in blank layout
