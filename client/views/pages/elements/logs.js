@@ -124,3 +124,26 @@ Template.logs.helpers({
 		}
 	},
 });	
+
+Template.ticket_log.helpers({
+	getStatusColor(status, priority){
+		if (status === 'Gesloten') {
+			color = '#f5f5f5';
+		} else {
+			switch(priority) {
+			    case 'Hoog':
+			        color = '#ed5565';
+			        break;
+			    case 'Normaal':
+			        color = '#f8ac59';
+			        break;
+			    case 'Laag':
+			        color = '#1c84c6';
+			        break;
+			    default:
+			        color = '#f5f5f5';
+			}
+		}
+		return color;
+	}
+})
