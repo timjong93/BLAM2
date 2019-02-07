@@ -1,0 +1,29 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.ticket-list {
+    min-height: 95vh;
+}
+
+.content-body .container-fluid {
+    padding-top: 0;
+}
+
+.bg-bata {
+    background-color: #2f6d8c !important;
+}
+
+.text-bata {
+    color: #2f6d8c !important;
+}
+
+.brand-title {
+    color: #ffffff;
+    padding: 10px;
+}
+
+.ticketDetail form input {
+    min-height: 3.5rem;
+    height: 3.5rem;
+}

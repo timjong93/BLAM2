@@ -1,117 +1,129 @@
 <template name="tickets">
-        <div class="ibox" style="height:100%">
-        <div class="ibox-title">
-            <div class="row">
-                <div class="col-md-8"><h5>Log</h5></div>
-                <div class="col-md-4"><div class="input-group"><input type="text" id="search_tickets" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                        <button type="button" class="btn btn-sm btn-primary"> <i class="fa fa-times"></i></button> </span></div></div>
-            </div>
+    <div class="ticket-list ibox bg-white email-left-box px-0">
+        <div class="ibox-title bg-inverse">
+                <h3 class="brand-title">Tickets</h3>
         </div>
         <div class="ibox-content" style="height:95%;">
             <div class="scrollRow" style="height:100%; overflow-y: scroll;">
-            <div class="panel-group" id="accordion">
-                <h5>Open</h5>
-                {{#each open_tickets}}
-        		  {{> ticket}}
-                {{/each}}
-                <div class="hr-line-dashed"></div>
-                <h5>Gesloten</h5>
-                {{#each closed_tickets}}
-                  {{> ticket}}
-                {{/each}}
-
+                <div class="intro-title d-flex justify-content-between m-0 p-3">
+                    <h5>Open</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {{#each open_tickets}}
+                    {{> ticket}}
+                    {{/each}}
+                </div>
+                <div class="intro-title d-flex justify-content-between m-0 p-3">
+                    <h5>Closed</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {{#each closed_tickets}}
+                    {{> ticket}}
+                    {{/each}}
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </template>
 
 <template name="ticket">
-	<div class="panel panel-default ticket" style="border-color:{{getStatusColor status priority}}">
-        <div class="panel-heading" style="background-color:{{getStatusColor status priority}}">
-            <div class="row">
-                <div class="col-md-8">
-                    <h5 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href=#ticket_{{_id}} aria-expanded="false" class="collapsed">{{title}}</a>
-                    </h5>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-user-o"></i>    {{owner}}
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-clock-o"></i>    {{formatTime updatedAt}}
-                </div>
-            </div>
+    <a href="javascript:void()" class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:{{getStatusColor status priority}};">
+        <div class="d-flex w-100 justify-content-between">
+            {{title}}
         </div>
-            
-        <div id=ticket_{{_id}} class="panel-collapse collapse" aria-expanded="false" >
-            <div class="ibox-content">
-            	{{#autoForm collection="Tickets" doc=this id=_id type="update" autosave=true}}
-                <div class="row">
-                	<div class="col-lg-6">
-                        <div class="form-group">
-                                <label class="col-sm-3 control-label">Titel</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name="title"}}</div>
-                            </div>
-                			<div class="form-group">
-                				<label class="col-sm-3 control-label">Toegewezen</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name="owner" options=ownerOptions}}</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Locatie</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name='location'}}</div>
-                            </div>
-                		</div>
-                	<div class="col-lg-6">
-                		<div class="form-group">
-                				<label class="col-sm-3 control-label">Status</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name="status" options=statusOptions}}</div>
-                            </div>
-                        <div class="form-group">
-                				<label class="col-sm-3 control-label">Prioriteit</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name="priority" options=priorityOptions}}</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Laatste update</label>
-                                <div class="col-sm-9 m-b">{{> afFieldInput name="updatedAt" disabled=true type="datetime-local"}}</div>
-                            </div>
-                	</div>
-                </div>
-                {{/autoForm}}
-                <div class="hr-line-dashed"></div>
-                {{#if handles _id}}
-                    <div class="row">
-                    	<div class="col-md-12">
-                    	<table class="table">
-                            <thead>
-                                <tr>
-                                    <td style="font-weight: 900;">Eenheden</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each handles _id}}
-                                    <tr data-id="_id" class="handle_row">
-                                        <td><i class="fa fa-{{icon}} modal-icon"></i> {{callsign}}</td>
-                                        <td>{{name}}</td>
-                                    </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
-                    </div>
-                <div class="hr-line-dashed"></div>
-                {{/if}}
-                <div class="row">
-                	<div class="col-md-12 ticket-logs">
-                		<div id="vertical-timeline" class="vertical-container light-timeline no-margins scrollRow" style="max-height:300px; overflow-y: scroll; width: 100%; padding: 0px 0px 10px 0px;">
-				            {{#each logs _id}}
-                                {{>log}}
-                            {{/each}}
-						</div>
-                        {{> log_input ticket_id=_id}}
-                	</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </a>
 </template>
+
+<!--<template name="ticket">-->
+    <!--<div class="list-group-item list-group-item-action flex-column align-items-start active" style="border-color:{{getStatusColor status priority}}">-->
+        <!--<div class="d-flex w-100 justify-content-between" style="background-color:{{getStatusColor status priority}}">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-8">-->
+                    <!--<h5 class="panel-title">-->
+                        <!--<a data-toggle="collapse" data-parent="#accordion" href=#ticket_{{_id}} aria-expanded="false"-->
+                           <!--class="collapsed">{{title}}</a>-->
+                    <!--</h5>-->
+                <!--</div>-->
+                <!--<div class="col-md-2">-->
+                    <!--<i class="fa fa-user-o"></i> {{owner}}-->
+                <!--</div>-->
+                <!--<div class="col-md-2">-->
+                    <!--<i class="fa fa-clock-o"></i> {{formatTime updatedAt}}-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div id=ticket_{{_id}} class="panel-collapse collapse" aria-expanded="false">-->
+            <!--<div class="ibox-content">-->
+                <!--{{#autoForm collection="Tickets" doc=this id=_id type="update" autosave=true}}-->
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-6">-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Titel</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name="title"}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Toegewezen</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name="owner" options=ownerOptions}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Locatie</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name='location'}}</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-6">-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Status</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name="status" options=statusOptions}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Prioriteit</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name="priority" options=priorityOptions}}</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">Laatste update</label>-->
+                            <!--<div class="col-sm-9 m-b">{{> afFieldInput name="updatedAt" disabled=true-->
+                                <!--type="datetime-local"}}-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--{{/autoForm}}-->
+                <!--<div class="hr-line-dashed"></div>-->
+                <!--{{#if handles _id}}-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                        <!--<table class="table">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<td style="font-weight: 900;">Eenheden</td>-->
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                            <!--{{#each handles _id}}-->
+                            <!--<tr data-id="_id" class="handle_row">-->
+                                <!--<td><i class="fa fa-{{icon}} modal-icon"></i> {{callsign}}</td>-->
+                                <!--<td>{{name}}</td>-->
+                            <!--</tr>-->
+                            <!--{{/each}}-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="hr-line-dashed"></div>-->
+                <!--{{/if}}-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12 ticket-logs">-->
+                        <!--<div id="vertical-timeline" class="vertical-container light-timeline no-margins scrollRow"-->
+                             <!--style="max-height:300px; overflow-y: scroll; width: 100%; padding: 0px 0px 10px 0px;">-->
+                            <!--{{#each logs _id}}-->
+                            <!--{{>log}}-->
+                            <!--{{/each}}-->
+                        <!--</div>-->
+                        <!--{{> log_input ticket_id=_id}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</template>-->
