@@ -3,10 +3,11 @@ import '/imports/ui/custom.min.js';
 import '/imports/ui/settings.js';
 import '/imports/ui/gleek.js';
 
-Template.main.rendered = function(){
+import '/imports/ui/stylesheets/custom.css';
 
-    // Add gray color for background in blank layout
-    // $('body').addClass('gray-bg');
+Template.main.rendered = function(){
+    $('body').removeClass('login-body');
+
 
         // Fix height of layout when resize, scroll and load
     // $(window).bind("load resize scroll", function() {
@@ -41,4 +42,11 @@ Template.main.rendered = function(){
 
     $('.scrollRow').perfectScrollbar();
 
+}
+
+Template.login.rendered = function(){
+        //Make body 100%
+        $('html').addClass('h-100');
+        $('body').addClass('h-100');
+        $('body').addClass('login-body');
 }
