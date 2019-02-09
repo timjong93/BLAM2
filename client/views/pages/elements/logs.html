@@ -1,93 +1,64 @@
 <template name="logs">
-	<div class="timeline_content">
-			<div class="timeline-timestamp">
-					<span class="badge badge-primary">{{currentTime}}</span>
-			</div>
-			<ul class="timeline">
-					{{#each logs}}
-					{{#if ticket}}
-					   {{> ticket_log}}
-					 {{else}}
-					   {{>log}}
-					 {{/if}}
-				   {{/each}}
-					
-				</ul>
-	</div>
-
-		{{> log_input}}
+				<div class="event-chat-ryt">
+					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 750px;">
+						<ul class="list-group" style="overflow: hidden; width: auto; height: 750px;">
+						<li class="list-group-item">
+							<div class="chat-area">
+									{{#each logs}}
+									{{#if ticket}}
+									   {{> ticket_log}}
+									 {{else}}
+									   {{>log}}
+									 {{/if}}
+								   {{/each}}
+							</div>
+						</li>
+					</ul>
+					<div class="slimScrollBar" style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
+					<div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div></div>
+					{{> log_input}}
+				</div>
 </template>
 
 <template name="log">
-		<li class="timeline-inverted m-0">
-				<div class="timeline-badge">
-					<span class="text-pale-sky">
-						<i class="fa fa-comments" aria-hidden="true"></i>
-					</span>
-				</div>
-				<div class="timeline-panel">
-					<div class="card story-widget">
-						<div class="card-body p-4">
-							<p>{{{message}}}</p>
-							<div class="reaction-section d-flex my-3">
-								<div class="like">
-									<i class="fa fa-user-o"></i>
-									<span class="count mr-4 ml-2">{{createdBy}}</span>
-								</div>
-								<div class="comment">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span class="count mr-4 ml-2">{{formatTime createdAt}}</span>
-								</div>
-							</div>
-						</div>
+		<div class="chat-sender"> 
+			<div class="media single-message" style="overflow:visible;">
+					<button class="btn btn-invert btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+					</button>
+				<div class="media-body" style="overflow:visible;">
+					<div>
+						<span>{{{message}}}</span>
+						<small class="time">{{createdBy}} - {{formatTime createdAt}}</small>
 					</div>
 				</div>
-			</li>
+			</div>
+		</div>
 </template>
 
 <template name="ticket_log">
-		<li class="timeline-inverted">
-				<div class="timeline-badge">
-					<span class="text-pale-sky">
-						<i class="fa fa-file-text" aria-hidden="true"></i>
-					</span>
-				</div>
-				<div class="timeline-panel m-0">
-					<div class="card story-widget">
-						<div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" style="background-color:{{getStatusColor status priority}}">
-							<h4 class="heading-primary mb-0">{{ticket.title}}</h4>
-							<p class="font-small text-dark mb-0">{{ticket.owner}}</p>
-						</div>
-						<div class="card-body p-4">
-							<p>{{{message}}}</p>
-							<div class="reaction-section d-flex my-3">
-								<div class="like">
-									<i class="fa fa-user-o"></i>
-									<span class="count mr-4 ml-2">{{createdBy}}</span>
-								</div>
-								<div class="comment">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span class="count mr-4 ml-2">{{formatTime createdAt}}</span>
-								</div>
-							</div>
-						</div>
+		<div class="chat-sender"> 
+			<div class="media single-message" style="overflow:visible;">
+					<button class="btn btn-primary btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</button>
+				<div class="media-body" style="overflow:visible;">
+					<div class="ticket-chat">
+						<h4 class="ticket-chat">{{ticket.title}}</h4>
+						<span>{{{message}}}</span>
+						<small class="time">{{createdBy}} - {{formatTime createdAt}}</small>
 					</div>
 				</div>
-			</li>
+			</div>
+		</div>
 </template>
 
 <template name="log_input">
-	<div class="ibox-content ibox-heading" style="height:15%;">
-		<form class="new-log"  style="height:100%;">
-			<div class="col-sm-10"  style="height:100%;">
-				<div id="log-message" class="form-control" contenteditable="true"  style="height:100%;"></div>
+		<div class="char-type">
+				<form class="d-flex justify-content-center">
+					<div id="log-message" class="form-control" contenteditable="true"  style="height:100%;"></div>
+					<button type="submit" id="new-ticket-btn" class="btn btn-invert btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+					</button>
+					<button type="submit" id="new-log-btn" class="btn btn-primary btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</button>
+				</form>
 			</div>
-			<div class="col-sm-2" style="padding-left: 0px;">
-				<button type="button" id="new-log-btn" class="btn btn-w-m btn-primary m-b-sm" style="min-width:0px; width: 100%;">Log</button>
-				{{#unless ticket_id}}
-				<button type="button" id="new-ticket-btn" class="btn btn-w-m btn-warning" style="min-width:0px; width: 100%;">Ticket</button>
-				{{/unless}}
-			</div>
-		</form>
-	</div>
 </template>

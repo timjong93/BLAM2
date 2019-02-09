@@ -6,9 +6,9 @@ body {
     min-height: 95vh;
 }
 
-.content-body .container-fluid {
+/* .content-body .container-fluid {
     padding-top: 0;
-}
+} */
 
 .bg-bata {
     background-color: #2f6d8c !important;
@@ -26,6 +26,10 @@ body {
 .ticketDetail form input {
     min-height: 3.5rem;
     height: 3.5rem;
+}
+
+.email-left-box {
+    width: 100%
 }
 
 .login-body {
@@ -56,4 +60,126 @@ body {
         width: 80%;
         left: 15%;
     }
+}
+
+.label, .timeline-timestamp {
+    text-align: inherit;
+}
+
+.timeline_content {
+    margin-top: 10px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+@media only screen and (min-width: 1501px){
+    .card-body {
+        padding: 2rem
+    }
+}
+
+.log-input {
+    max-height:18vh;
+}
+
+.event-chat-ryt .chat-area .media-body div span {
+    border-radius: .5rem;
+    padding: 1rem;
+    display: inline-block;
+    top: 103%;
+    position: relative;
+}
+
+.event-chat-ryt .chat-sender .media .media-body div span {
+    padding-left: 1.7rem;
+}
+
+.event-chat-ryt div {
+    font-size: 1.4rem;
+}
+
+.event-chat-ryt .chat-sender .media .media-body div {
+    background-color: #fff;
+}
+
+@media (min-width: 576px){
+.event-chat-ryt .chat-area .media-body div {
+    max-width: 60%;
+}
+}
+.event-chat-ryt .chat-area .media-body div {
+    margin: 0;
+    max-width: 100%;
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+}
+.event-chat-ryt div {
+    font-size: 1.4rem;
+}
+
+.event-chat-ryt .chat-sender .media .media-body div .time {
+    right: 0;
+}
+.event-chat-ryt .chat-sender .media .media-body div small {
+    font-size: 10px!important;
+}
+
+#log-message{
+    background-color: transparent;
+    font-size: 1.6rem;
+    color: #847577;
+    border: 0;
+}
+
+.event-chat-ryt .chat-sender .media .media-body div h4 {
+    margin: 0;
+    padding-left: 1.7rem;
+    padding-top: 0.7rem;
+}
+
+.event-chat-ryt .chat-area .media-body div .time {
+    position: absolute;
+    color: #aaa;
+}
+
+.event-chat-ryt .chat-sender .media .media-body div span::after {
+    border-color: transparent transparent #fff;
+    left: -1.5rem;
+}
+
+.event-chat-ryt .chat-area .media-body div span::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 15px;
+    bottom: 0;
+    position: absolute;
+}
+
+.ticket-chat {
+    background: #7f63f4;
+    color: white;
+}
+
+.event-chat-ryt .chat-sender .media .media-body .ticket-chat {
+    background: #7f63f4;
+    color: white;
+    border-radius: 5px;
+}
+
+.event-chat-ryt .chat-sender .media .media-body .ticket-chat span::after {
+    border-color: transparent transparent #7f63f4;
+    left: -1.5rem;
+}
+
+[contenteditable=true]:empty:before{
+    content: "🙂 Type your message here";
+    display: block; /* For Firefox */
+  }
+
+.btn-invert{
+    color: #7f63f4;
+    background: #fff;
 }

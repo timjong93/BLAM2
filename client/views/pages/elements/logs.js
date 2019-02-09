@@ -123,6 +123,9 @@ Template.logs.helpers({
 			return logs;
 		}
 	},
+    currentTime: function() {
+        return Chronos.moment().format('HH:mm:ss');
+    }
 });	
 
 Template.ticket_log.helpers({

@@ -1,6 +1,6 @@
 <template name="main">
 
-            {{> topNavbar }}
+            <!-- {{> topNavbar }} -->
 
 
     <div class="content-body" style="margin-left:0">
@@ -8,8 +8,12 @@
         <div class="row">
             <!--<div class="col-lg-2">{{> handles}}</div>-->
             <div class="col-lg-4">{{> logs}}</div>
-            <div class="col-lg-3 p-0">{{> tickets}}</div>
-            <div class="col-lg-5 p-0">{{> ticketDetail}}</div>
+            <div class="col-lg-8">
+                <div class="row">
+                        <div class="col-lg-4">{{> tickets}}</div>
+                        <div class="col-lg-8">{{> ticketDetail}}</div>
+                </div>
+            </div>
         </div>
     </div>
             <!-- Page wrapper -->
