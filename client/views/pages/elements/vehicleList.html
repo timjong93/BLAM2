@@ -1,9 +1,9 @@
 <template name="vehicleList">
     <div class="sidebar-right">
-        <a class="sidebar-right-trigger">
+        <a class="sidebar-right-trigger text-white">
             <i class="fa fa-car"></i>
         </a>
-        <div class="slimScrollDiv">
+        <div class="tab-content tab-content-default tabcontent-border p-1">
             <div class="tab-content tab-content-default tabcontent-border">
                 <h4>Vehicles</h4>
                 <div class="input-group mb-3">
@@ -12,6 +12,77 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Assignee" aria-label="Assignee">
                 </div>
+                <div class="vehicleList">
+                    {{> vehicleCategory}}
+                    {{> vehicleCategory}}
+                    {{> vehicleCategory}}
+                    {{> vehicleCategory}}
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {{> vehicleDetail}}
+    </div>
+</template>
+
+<template name="vehicleCategory">
+    <h4>Category</h4>
+    <hr />
+    {{> vehicles}}
+    {{> vehicles}}
+    {{> vehicles}}
+    {{> vehicles}}
+    {{> vehicles}}
+    {{> vehicles}}
+    {{> vehicles}}
+</template>
+
+<template name="vehicles">
+    <div class="row">
+        <div class="col-lg-2">
+            <i class="fa fa-car"></i>
+        </div>
+        <div class="col-lg-5">
+            BATA-111
+        </div>
+        <div class="col-lg-5 text-right">
+            Iets
+        </div>
+    </div>
+</template>
+
+<template name="vehicleDetail">
+    <div class="tab-content tab-content-default tabcontent-border">
+        <div class="row pb-3">
+            <div class="col-lg-10">
+            <h4>BATA-111</h4>
+        </div>
+        <div class="col-lg-2">
+            <i class="fa fa-external-link"></i>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <h4>Name:</h4>
+            </div>
+            <div class="col-lg-7">
+                lhueg
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <h4>Net:</h4>
+            </div>
+            <div class="col-lg-7">
+                ligeh
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <h4>Last call:</h4>
+            </div>
+            <div class="col-lg-7">
+                20:20
             </div>
         </div>
     </div>
