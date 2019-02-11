@@ -67,6 +67,12 @@ body {
     }
 }
 
+.sidebar-right{
+    z-index: 99;
+}
+
+.sidebar-right .sidebar-right-trigger{
+    border-radius: 50px 0 0 50px;
 .label, .timeline-timestamp {
     text-align: inherit;
 }
