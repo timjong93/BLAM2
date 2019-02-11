@@ -1,19 +1,21 @@
 <template name="ticketDetail">
-    <div class="ticketDetail email-right-box p-0">
+    <div class="ticketDetail p-0">
         <div class="right-box-padding">
             <div class="card">
                 <div class="card-body pb-3">
                     <div class="card-title">
-                        Ticket title
+                        {{ct.title}}
                     </div>
                     <form class="card-body form p-0">
+                         {{#autoForm collection="Tickets" doc=ct id="ticketDetailForm" type="update" autosave=true}}
                         <div class="col-lg-6 pl-0">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-comment"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Title" aria-label="Title">
+                                <!-- <input type="text" class="form-control" placeholder="Title" aria-label="Title"> -->
+                                {{> afFieldInput name="title"}}
                             </div>
 
                             <div class="input-group mb-3">
@@ -21,7 +23,7 @@
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Assignee" aria-label="Assignee">
+                                {{> afFieldInput name="owner" options=ownerOptions}}
                             </div>
 
                             <div class="input-group mb-3">
@@ -29,7 +31,7 @@
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-map-marker"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Location" aria-label="Location">
+                                {{> afFieldInput name='location'}}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -38,7 +40,7 @@
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-tasks"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Status" aria-label="Status">
+                                {{> afFieldInput name="status" options=statusOptions}}
                             </div>
 
                             <div class="input-group mb-3">
@@ -46,7 +48,7 @@
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-exclamation"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Priority" aria-label="Priority">
+                                {{> afFieldInput name="priority" options=priorityOptions}}
                             </div>
 
                             <div class="input-group mb-3">
@@ -54,12 +56,56 @@
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-clock-o"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Last update" aria-label="Last update">
+                                {{> afFieldInput name="updatedAt" disabled=true type="datetime-local"}}
                             </div>
                         </div>
+                        {{/autoForm}}
                     </form>
                 </div>
             </div>
+            <div class="card">
+                    <div class="card-body pb-3">
+                        <div class="card-body  p-0">
+                            <div class="table-responsive">
+                                <table class="table" style="min-width: 450px;">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Net</th>
+                                            <th>Last call</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each handles ct._id}}
+                                        <tr>
+                                            <th><i class="fa fa-{{icon}} modal-icon"></i></th>
+                                            <td>{{callsign}}</td>
+                                            <td>{{callsign}}</td>
+                                            <td>{{subnet}} 22</td>
+                                            <td class="color-primary">{{formatTime lastLog}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div></div></div>
+                        <div class="event-chat-ryt">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 750px;">
+                                    <ul class="list-group" style="overflow: hidden; width: auto; height: 750px;">
+                                    <li class="list-group-item">
+                                        <div class="chat-area">
+                                            {{#each logs ct._id}}
+                                                {{>log}}
+                                            {{/each}}
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="slimScrollBar" style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
+                                <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div></div>
+                                {{> log_input ticket_id=ct._id}}
+                            </div>
         </div>
     </div>
 </template>

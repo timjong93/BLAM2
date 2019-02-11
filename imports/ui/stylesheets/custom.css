@@ -28,6 +28,11 @@ body {
     height: 3.5rem;
 }
 
+.ticketDetail form select {
+    min-height: 3.5rem;
+    height: 3.5rem;
+}
+
 .email-left-box {
     width: 100%
 }
@@ -182,4 +187,31 @@ body {
 .btn-invert{
     color: #7f63f4;
     background: #fff;
+}
+
+[data-sidebar-style=full] .header {
+    margin: 0;
+    width: 100%;
+}
+
+.email-left-box{
+    height: 90vh;
+}
+
+.char-type form{
+    height: 100px;
+}
+
+.event-chat-ryt .chat-area .media-body div span span::after {
+    content:none;
+}
+
+.icon-info i{
+    color: #00a2ff!important ;
+}
+
+.mail-list .list-group-item-active{
+    padding-left: 1.4rem;
+    border-left: 0.3rem solid #7f63f4;
+    background-color: #f5f5f5;
 }

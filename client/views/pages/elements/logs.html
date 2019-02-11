@@ -55,8 +55,10 @@
 		<div class="char-type">
 				<form class="d-flex justify-content-center">
 					<div id="log-message" class="form-control" contenteditable="true"  style="height:100%;"></div>
+					{{#unless ticket_id}}
 					<button type="submit" id="new-ticket-btn" class="btn btn-invert btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
 					</button>
+					{{/unless}}
 					<button type="submit" id="new-log-btn" class="btn btn-primary btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
 					</button>
 				</form>
