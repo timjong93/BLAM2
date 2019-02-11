@@ -1,3 +1,5 @@
+import { Session } from 'meteor/session'
+
 Template.ticket.rendered = function(){
 	  $('.scrollRow').perfectScrollbar();
 	};
@@ -5,7 +7,6 @@ Template.ticket.rendered = function(){
 Template.tickets.helpers({
 	open_tickets() {
 		let tickets = Tickets.find({status:'Open'},{sort:{priority:1}}).fetch();
-		console.log(tickets);
 		return tickets;
 
 
@@ -16,6 +17,41 @@ Template.tickets.helpers({
 });
 
 Template.ticket.helpers({
+	getStatusColor(priority){
+		switch(priority) {
+			case 'Hoog':
+				return 'icon-danger';
+				break;
+			case 'Normaal':
+				return 'icon-warning';				
+				break;
+			case 'Laag':
+				return 'icon-info';
+			default:
+				return 'icon-primary';
+		}
+	},
+	isActive(id){
+		return id == Session.get('currentTicketId')
+	}
+})
+
+Template.ticket.events({
+	'click .ticket-link'(e) {
+		Session.set(
+			'currentTicketId',
+			e.target.id
+		);
+	}
+});
+
+Template.ticketDetail.helpers({
+	currentTicketId(){
+		return Session.get('currentTicketId')
+	},
+	ct(){
+		return Tickets.findOne({_id:Session.get('currentTicketId')});
+	},
 	statusOptions() {
 		return [
 	        {label: 'Open', value: 'Open'},

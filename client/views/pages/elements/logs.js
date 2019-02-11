@@ -41,7 +41,7 @@ var initTribute = function(){
 
 Template.log_input.events({
   'click #new-log-btn'(event) {
-  	console.log('new-log-btn clicked');
+  	console.log('new-log-btn clicked', this.ticket_id);
 
     // Prevent default browser form submit
     event.preventDefault();
@@ -123,6 +123,9 @@ Template.logs.helpers({
 			return logs;
 		}
 	},
+    currentTime: function() {
+        return Chronos.moment().format('HH:mm:ss');
+    }
 });	
 
 Template.ticket_log.helpers({
