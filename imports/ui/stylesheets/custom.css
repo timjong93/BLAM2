@@ -223,3 +223,7 @@ body {
     border-left: 0.3rem solid #7f63f4;
     background-color: #f5f5f5;
 }
+
+.ticket-link:hover{
+    cursor:pointer;
+}
