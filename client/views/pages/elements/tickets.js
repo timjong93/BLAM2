@@ -5,8 +5,14 @@ Template.ticket.rendered = function(){
 	};
 
 Template.tickets.helpers({
+	new_tickets() {
+		let tickets = Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:1}}).fetch();
+		return tickets;
+
+
+	},
 	open_tickets() {
-		let tickets = Tickets.find({status:'Open'},{sort:{priority:1}}).fetch();
+		let tickets = Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:1}}).fetch();
 		return tickets;
 
 
@@ -21,10 +27,8 @@ Template.ticket.helpers({
 		switch(priority) {
 			case 'Hoog':
 				return 'icon-danger';
-				break;
 			case 'Normaal':
 				return 'icon-warning';				
-				break;
 			case 'Laag':
 				return 'icon-info';
 			default:

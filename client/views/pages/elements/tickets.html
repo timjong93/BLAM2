@@ -1,6 +1,15 @@
 <template name="tickets">
     <div class="email-left-box px-0 bg-white mb-5">
             <div class="intro-title d-flex justify-content-between m-0">
+                    <h5>New</h5>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+                <div class="mail-list mt-4">
+                        {{#each new_tickets}}
+                        {{> ticket}}
+                        {{/each}}
+                </div>
+            <div class="intro-title d-flex justify-content-between m-0">
                 <h5>Open</h5>
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
             </div>
