@@ -6,19 +6,30 @@ Template.ticket.rendered = function(){
 
 Template.tickets.helpers({
 	new_tickets() {
-		let tickets = Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:1}}).fetch();
-		return tickets;
+		let searchQuery = Session.get('searchValue')
+		if(searchQuery){
+			return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:1}}).fetch();
+		}else{
+			return Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:1}}).fetch();
+		}
 
 
 	},
 	open_tickets() {
-		let tickets = Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:1}}).fetch();
-		return tickets;
-
-
+		let searchQuery = Session.get('searchValue')
+		if(searchQuery){
+			return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:1}}).fetch();
+		}else{
+			return Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:1}}).fetch();
+		}
 	},
 	closed_tickets() {
-		return Tickets.find({status:'Gesloten'})
+		let searchQuery = Session.get('searchValue')
+		if(searchQuery){
+			return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:1}}).fetch();
+		}else{
+			return Tickets.find({status:'Gesloten'},{sort:{priority:1}}).fetch();
+		}
 	}
 });
 

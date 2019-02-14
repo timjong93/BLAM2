@@ -13,10 +13,9 @@
                     <input type="text" class="form-control" placeholder="Assignee" aria-label="Assignee">
                 </div>
                 <div class="vehicleList">
+                    {{#each handles}}
                     {{> vehicleCategory}}
-                    {{> vehicleCategory}}
-                    {{> vehicleCategory}}
-                    {{> vehicleCategory}}
+                    {{/each}}
                 </div>
             </div>
         </div>
@@ -26,27 +25,27 @@
 </template>
 
 <template name="vehicleCategory">
-    <h4>Category</h4>
+    <h4>{{subnet}}</h4>
     <hr />
-    {{> vehicles}}
-    {{> vehicles}}
-    {{> vehicles}}
-    {{> vehicles}}
-    {{> vehicles}}
-    {{> vehicles}}
-    {{> vehicles}}
+    {{#each this.handles}}
+        {{> vehicles}}
+    {{/each}}
 </template>
 
 <template name="vehicles">
     <div class="row">
         <div class="col-lg-2">
-            <i class="fa fa-car"></i>
+            {{#if lastLogNotify}}
+                <i style="color:red;" class="fa fa-{{icon}} modal-icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="Laatste Melding {{formatTime lastLog}}"></i>
+            {{else}}
+                <i class="fa fa-{{icon}} modal-icon"></i>
+            {{/if}} 
         </div>
         <div class="col-lg-5">
-            BATA-111
+            {{callsign}}
         </div>
         <div class="col-lg-5 text-right">
-            Iets
+            {{name}}
         </div>
     </div>
 </template>

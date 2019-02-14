@@ -20,7 +20,7 @@ Template.log_input.rendered = function(){
 
 var initTribute = function(){
 	let handles = Handles.find({},{sort: {callsign: 1}}).fetch().map(function(h){return {key:h.callsign,value:h.name}});
-	if (! Template.instance().find('#log-message').hasAttribute("data-tribute")) {
+	if (! Template.instance().find('.log-message').hasAttribute("data-tribute")) {
 	     this.tribute = new Tribute({
 		  values: handles,
 		  // template for displaying item in menu
@@ -108,8 +108,14 @@ Template.log_input.events({
 
 Template.logs.helpers({
 	logs() {
-		if(Template.instance().searchQuery.get() && Template.instance().searchQuery.get().length > 0){
-			var logs = Logs.find({message:{'$regex':Template.instance().searchQuery.get(), '$options' : 'i'}},{sort: {createdAt: -1}}).fetch();
+		let searchQuery = Session.get('searchValue')
+		if(searchQuery && searchQuery.length > 0){
+			var logs = Logs.find({
+					$or:[
+						{message:{'$regex':searchQuery, '$options' : 'i'}},
+						{title:{'$regex':searchQuery, '$options' : 'i'}}
+					]
+				},{sort: {createdAt: -1}}).fetch();
 		}else{
 			var logs = Logs.find({},{sort: {createdAt: -1}}).fetch();
 		}
@@ -119,13 +125,9 @@ Template.logs.helpers({
 	        	log.ticket = Tickets.findOne({logs:log._id}, {fields: {title:1}});
 				return log;
 			});
-			console.log(logs)
 			return logs;
 		}
-	},
-    currentTime: function() {
-        return Chronos.moment().format('HH:mm:ss');
-    }
+	}
 });	
 
 Template.ticket_log.helpers({

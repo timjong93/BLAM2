@@ -1,3 +1,5 @@
+import { Session } from 'meteor/session'
+
 Template.topNavbar.rendered = function(){
 
     // FIXED TOP NAVBAR OPTION
@@ -20,6 +22,9 @@ Template.topNavbar.helpers({
 });
 
 Template.topNavbar.events({
+  'input #search-field': function (event, template) {
+    Session.set('searchValue', event.currentTarget.value);
+  },
 
   'click .btn-fullscreen': function (event, template) {
     if (BigScreen.enabled) {
@@ -32,4 +37,8 @@ Template.topNavbar.events({
     }
   },
 
+});
+
+Template.logs.events({
+  
 });
