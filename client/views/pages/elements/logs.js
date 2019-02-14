@@ -7,7 +7,13 @@ Template.logs.onCreated(function handlesOnCreated() {
 Template.logs.events({
   'input #search_logs': function (event, template) {
     Template.instance().searchQuery.set(event.currentTarget.value);
-  },
+	},
+	'click .ticket-chat'(e) {
+		Session.set(
+			'currentTicketId',
+			e.currentTarget.id.replace('tc_','')
+		);
+	}
 });
 
 
@@ -41,8 +47,6 @@ var initTribute = function(){
 
 Template.log_input.events({
   'click #new-log-btn'(event) {
-  	console.log('new-log-btn clicked', this.ticket_id);
-
     // Prevent default browser form submit
     event.preventDefault();
 
