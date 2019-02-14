@@ -39,7 +39,7 @@ var initTribute = function(){
 		  trigger:'B',
 		});
 		tribute.attach(Template.instance().find('#log-message'));
-	}else{
+	}else{	
 		this.tribute.append(0,handles,true)
 	}
 	

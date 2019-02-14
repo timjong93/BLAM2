@@ -10,7 +10,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-fw fa-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Assignee" aria-label="Assignee">
+                    <input type="text" id="vehicle-search" class="form-control" placeholder="Vehicle" aria-label="Assignee">
                 </div>
                 <div class="vehicleList">
                     {{#each handles}}
@@ -33,7 +33,7 @@
 </template>
 
 <template name="vehicles">
-    <div class="row">
+    <div class="row vehicle-row" id="{{_id}}">
         <div class="col-lg-2">
             {{#if lastLogNotify}}
                 <i style="color:red;" class="fa fa-{{icon}} modal-icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="Laatste Melding {{formatTime lastLog}}"></i>
@@ -54,7 +54,7 @@
     <div class="tab-content tab-content-default tabcontent-border">
         <div class="row pb-3">
             <div class="col-lg-10">
-            <h4>BATA-111</h4>
+            <h4>{{vd.callsign}}</h4>
         </div>
         <div class="col-lg-2">
             <i class="fa fa-external-link"></i>
@@ -65,7 +65,7 @@
                 <h4>Name:</h4>
             </div>
             <div class="col-lg-7">
-                lhueg
+                {{vd.name}}
             </div>
         </div>
         <div class="row">
@@ -73,7 +73,7 @@
                 <h4>Net:</h4>
             </div>
             <div class="col-lg-7">
-                ligeh
+                {{vd.subnet}}
             </div>
         </div>
         <div class="row">
@@ -81,7 +81,7 @@
                 <h4>Last call:</h4>
             </div>
             <div class="col-lg-7">
-                20:20
+                {{vd.lastLog}}
             </div>
         </div>
     </div>

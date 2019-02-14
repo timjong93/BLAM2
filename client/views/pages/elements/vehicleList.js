@@ -1,5 +1,18 @@
 Template.vehicleList.open = false
 
+Template.vehicleList.onCreated(function handlesOnCreated() {
+  let template = Template.instance();
+  template.searchQuery = new ReactiveVar();
+  template.selected = new ReactiveVar();
+  this.autorun(function(){
+  		let handle = Handles.findOne()
+  		if(handle){
+	    template.selected.set(handle._id);
+
+  		}
+  	}.bind(this));
+});
+
 Template.vehicleList.rendered = function(){
   $('.sidebar-right .vehicleList').slimScroll({
     height: '40vh'
@@ -14,12 +27,30 @@ Template.vehicleList.events({
       $('.sidebar-right').removeClass('show')
     }
     Template.vehicleList.open = !Template.vehicleList.open
-  }
+  },
+  'input #vehicle-search': function (event, template) {
+    console.log(event);
+    Template.instance().searchQuery.set(event.target.value);
+  },
+  'click .vehicle-row': function(e, t) {
+    console.log(e.currentTarget.id);
+  	Session.set('currentVehicleId', e.currentTarget.id);
+}
 })
 
 Template.vehicleList.helpers({
   handles(){
-    var arrHandles = Handles.find({},{sort: {callsign: 1}}).fetch();
+    let searchQuery = Template.instance().searchQuery.get();
+    if(searchQuery){
+      var arrHandles = Handles.find({
+        $or:[
+          {name:{'$regex':searchQuery, '$options' : 'i'}},
+          {callsign:{'$regex':searchQuery, '$options' : 'i'}}
+        ]
+      },{sort: {callsign: 1}}).fetch();
+    }else{
+      var arrHandles = Handles.find({},{sort: {callsign: 1}}).fetch();
+    }
     if (arrHandles) {
       arrHandles = _.groupBy(arrHandles, 'subnet');
       var arrResult  = []
@@ -41,5 +72,11 @@ Template.vehicleList.helpers({
       console.log(arrResult);
       return arrResult;
     }
+  }
+})
+
+Template.vehicleDetail.helpers({
+  vd(){
+    return Handles.findOne({_id:Session.get('currentVehicleId')})
   }
 })
