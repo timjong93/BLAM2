@@ -227,3 +227,15 @@ body {
 .ticket-link:hover{
     cursor:pointer;
 }
+
+.event-chat-ryt .chat-area .chat-reciver, .event-chat-ryt .chat-area .chat-sender{
+    margin-bottom: 2.5rem;
+}
+
+.sidebar-right {
+    height: 100%;
+}
+
+.header {
+    z-index: 9999;
+}
