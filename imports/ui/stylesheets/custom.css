@@ -239,3 +239,20 @@ body {
 .header {
     z-index: 9999;
 }
+
+.fade.in {
+    opacity: 1;
+    display: block !important;
+    z-index: 9999999999;
+    top: 100px;
+  }
+  .modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  .modal-backdrop.in {
+    opacity: 0.5;
+    z-index: 0;
+    top: 0;
+  }

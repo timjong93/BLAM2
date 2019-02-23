@@ -100,6 +100,7 @@ Template.log_input.events({
       message: message,
       handles:logHandles
     }, function(err, result){
+			console.log(result);
     	Tickets.insert({
     		logs:[result],
     		handles:logHandles
@@ -155,4 +156,18 @@ Template.ticket_log.helpers({
 		}
 		return color;
 	}
-})
+});
+
+Template.log.events({
+	'click .close-modal'(e) {
+		$("body>.modal-backdrop").remove();
+	},
+	'click .cnf-change-to-ticket'(e) {
+		let log = Logs.findOne({_id:e.currentTarget.id.replace('log_','')});
+    Tickets.insert({
+    	logs:[log._id],
+    	handles:log.handles
+    });
+		$("body>.modal-backdrop").remove();
+	}
+});
