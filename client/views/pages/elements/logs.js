@@ -1,3 +1,4 @@
+import Tribute from "tributejs";
 
 Template.logs.onCreated(function handlesOnCreated() {
   let template = Template.instance();
@@ -25,23 +26,30 @@ Template.log_input.rendered = function(){
 };
 
 var initTribute = function(){
-	let handles = Handles.find({},{sort: {callsign: 1}}).fetch().map(function(h){return {key:h.callsign,value:h.name}});
-	if (! Template.instance().find('.log-message').hasAttribute("data-tribute")) {
-	     this.tribute = new Tribute({
-		  values: handles,
-		  // template for displaying item in menu
-		  menuItemTemplate: function (item) {
-		    return item.original.key+' - '+item.original.value;
-		  },
-		  selectTemplate: function (item) {
-		    return '<span class="label label-primary" contenteditable="false">'+ item.original.key + '</span>';
-		  },
-		  trigger:'B',
-		});
-		tribute.attach(Template.instance().find('#log-message'));
-	}else{	
-		this.tribute.append(0,handles,true)
+	let handles = Handles.find({},{sort: {callsign: 1}}).fetch().map(function(h){return {key:h.callsign,value:h.name, col:'handles'}});
+	let users = Meteor.users.find({},{sort:{username:1}}).fetch().map(function(u){return {key:u.username,value:u.username, col:'users'}});
+	if (this.tribute) {
+		this.tribute.detach(Template.instance().find('.log-message'));
 	}
+	this.tribute = new Tribute({
+		autocompleteMode: true,
+		values: handles.concat(users),
+		selectTemplate: function (item) {
+			if (typeof item === 'undefined') return null;
+			if (this.range.isContentEditable(this.current.element)) {
+				if(item.original.col == 'users'){
+					return '<span class="label label-warning" contenteditable="false"><a>' + item.original.key + '</a></span>';
+				}else{
+					return '<span class="label label-primary" contenteditable="false"><a>' + item.original.key + '</a></span>';
+				}
+			}
+			return item.original.value;
+		},
+		menuItemTemplate: function (item) {
+			return item.string;
+		}
+	});
+	this.tribute.attach(Template.instance().find('.log-message'));
 	
 }
 
@@ -100,14 +108,18 @@ Template.log_input.events({
       message: message,
       handles:logHandles
     }, function(err, result){
-			console.log(result);
     	Tickets.insert({
     		logs:[result],
     		handles:logHandles
-    	});
+    	},function(err,result){
+				Session.set(
+					'currentTicketId',
+					result
+				);
+			});
     });
     
-    Template.instance().find('#log-message').innerHTML = "";
+		Template.instance().find('#log-message').innerHTML = "";
   }
 });
 
@@ -167,7 +179,12 @@ Template.log.events({
     Tickets.insert({
     	logs:[log._id],
     	handles:log.handles
-    });
+    },function(err,result){
+			Session.set(
+				'currentTicketId',
+				result
+			);
+		});
 		$("body>.modal-backdrop").remove();
 	}
 });

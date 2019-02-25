@@ -1,4 +1,5 @@
 import '/imports/ui/plugins/common/common.min.js';
+import '/imports/ui/plugins/bootstrap/js/bootstrap.bundle.min.js'
 import '/imports/ui/custom.min.js';
 import '/imports/ui/settings.js';
 import '/imports/ui/gleek.js';

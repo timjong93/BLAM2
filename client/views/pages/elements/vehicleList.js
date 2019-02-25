@@ -69,7 +69,6 @@ Template.vehicleList.helpers({
       }
       // Tooltips demo
       $("[data-toggle=tooltip]").tooltip();
-      console.log(arrResult);
       return arrResult;
     }
   }
