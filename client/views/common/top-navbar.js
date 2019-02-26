@@ -1,13 +1,13 @@
 import { Session } from 'meteor/session'
 
-Template.topNavbar.rendered = function(){
-
-    // FIXED TOP NAVBAR OPTION
-    // Uncomment this if you want to have fixed top navbar
-    // $('body').addClass('fixed-nav');
-    // $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
-
-};
+Template.topNavbar.events({
+  'input #search-field': function (event, templateInstance) {
+    Session.set('searchValue', event.currentTarget.value);
+  },
+  'click .btn-logout': function (event, templateInstance) {
+    Meteor.logout();
+  }
+});
 
 Template.topNavbar.helpers({
     username: function() {
@@ -21,24 +21,4 @@ Template.topNavbar.helpers({
     }
 });
 
-Template.topNavbar.events({
-  'input #search-field': function (event, template) {
-    Session.set('searchValue', event.currentTarget.value);
-  },
 
-  'click .btn-fullscreen': function (event, template) {
-    if (BigScreen.enabled) {
-        BigScreen.toggle();
-    }
-  },
-  'click .btn-logout': function (event, template) {
-    if (BigScreen.enabled) {
-        Meteor.logout();
-    }
-  },
-
-});
-
-Template.logs.events({
-  
-});

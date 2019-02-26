@@ -7,16 +7,9 @@ import '/imports/ui/stylesheets/custom.css';
 
 import '/imports/ui/stylesheets/custom.css';
 
-Template.main.rendered = function(){
+Template.main.onRendered ( function onMainRendered() {
     $('body').removeClass('login-body');
 
     $('.scrollRow').perfectScrollbar();
 
-}
-
-Template.login.rendered = function(){
-        //Make body 100%
-        $('html').addClass('h-100');
-        $('body').addClass('h-100');
-        $('body').addClass('login-body');
-}
+});

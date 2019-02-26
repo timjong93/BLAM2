@@ -1,6 +1,7 @@
+//initally show vehicle drawer closed
 Template.vehicleList.open = false
 
-Template.vehicleList.onCreated(function handlesOnCreated() {
+Template.vehicleList.onCreated(function vehicleListOnCreated() {
   let template = Template.instance();
   template.searchQuery = new ReactiveVar();
   template.selected = new ReactiveVar();
@@ -13,11 +14,11 @@ Template.vehicleList.onCreated(function handlesOnCreated() {
   	}.bind(this));
 });
 
-Template.vehicleList.rendered = function(){
+Template.vehicleList.onRendered(function vehicleListOnRendered(){
   $('.sidebar-right .vehicleList').slimScroll({
     height: '40vh'
   })
-}
+});
 
 Template.vehicleList.events({
   'click .sidebar-right-trigger' (event) {
@@ -28,13 +29,13 @@ Template.vehicleList.events({
     }
     Template.vehicleList.open = !Template.vehicleList.open
   },
-  'input #vehicle-search': function (event, template) {
+  'input #vehicle-search': function (event, templateInstance) {
     console.log(event);
     Template.instance().searchQuery.set(event.target.value);
   },
-  'click .vehicle-row': function(e, t) {
+  'click .vehicle-row': function(event, templateInstance) {
     console.log(e.currentTarget.id);
-  	Session.set('currentVehicleId', e.currentTarget.id);
+  	Session.set('currentVehicleId', event.currentTarget.id);
 }
 })
 
