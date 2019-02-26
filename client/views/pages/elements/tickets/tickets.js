@@ -55,7 +55,7 @@ Template.ticket.events({
     'click .ticket-link'(event) {
         Session.set(
             'currentTicketId',
-            e.target.id
+            event.target.id
         );
     }
 });
