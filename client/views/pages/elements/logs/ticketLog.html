@@ -1,0 +1,15 @@
+<template name="ticketLog">
+    <div class="chat-sender"> 
+        <div class="media single-message" style="overflow:visible;">
+                <button class="btn btn-primary btn-circle btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+                </button>
+            <div class="media-body" style="overflow:visible;">
+                <div class="ticket-chat" id="tc_{{ticket._id}}">
+                    <h4 class="ticket-chat">{{ticket.title}}</h4>
+                    <span>{{{message}}}</span>
+                    <small class="time">{{createdBy}} - {{formatTime createdAt}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

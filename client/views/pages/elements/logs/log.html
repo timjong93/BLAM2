@@ -1,0 +1,41 @@
+<template name="log">
+    <div class="chat-sender"> 
+        <div class="media single-message" style="overflow:visible;">
+            {{#if isAction this}}
+                {{#if actionPerformed}}
+                <button id="action_{{_id}}" class="btn btn-invert btn-circle btn-send btn-undo-action"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                </button>
+                {{else}}
+                <button id="action_{{_id}}" class="btn btn-invert btn-circle btn-send btn-perform-action"><i class="fa fa-exclamation" aria-hidden="true"></i>
+                </button>
+                {{/if}}
+            {{else}}
+                <button class="btn btn-invert btn-circle btn-send" data-toggle="modal" data-target="#{{_id}}-log-modal-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            {{/if}}
+            <div class="media-body" style="overflow:visible;">
+                <div>
+                    <span>{{{message}}}</span>
+                    <small class="time">{{createdBy}} - {{formatTime createdAt}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-sm" id="{{_id}}-log-modal-sm" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Convert to ticket</h5>
+                    <button type="button" class="close close-modal" data-dismiss="modal"><span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Are you sure you want to convert this log message to a ticket</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                    <button type="button" id="log_{{_id}}" class="btn btn-primary cnf-change-to-ticket">Change to ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

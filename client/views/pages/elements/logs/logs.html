@@ -1,0 +1,21 @@
+<template name="logs">
+				<div class="event-chat-ryt">
+					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 750px;">
+						<ul class="list-group" style="overflow: hidden; width: auto; height: 750px;">
+						<li class="list-group-item">
+							<div class="chat-area">
+									{{#each logs}}
+									{{#if ticket}}
+									   {{> ticketLog}}
+									 {{else}}
+									   {{>log}}
+									 {{/if}}
+								   {{/each}}
+							</div>
+						</li>
+					</ul>
+					<div class="slimScrollBar" style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
+					<div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div></div>
+					{{> logInput}}
+				</div>
+</template>
