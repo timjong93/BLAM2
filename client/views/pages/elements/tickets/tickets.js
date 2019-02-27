@@ -8,9 +8,9 @@ Template.tickets.helpers({
     new_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:1}}).fetch();
+            return Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
         
         
@@ -18,17 +18,17 @@ Template.tickets.helpers({
     open_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:1}}).fetch();
+            return Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:-1}}).fetch();
         }
     },
     closed_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Gesloten'},{sort:{priority:1}}).fetch();
+            return Tickets.find({status:'Gesloten'},{sort:{priority:-1}}).fetch();
         }
     }
 });
@@ -36,11 +36,11 @@ Template.tickets.helpers({
 Template.ticket.helpers({
     getStatusColor(priority){
         switch(priority) {
-            case 'Hoog':
+            case 2:
             return 'icon-danger';
-            case 'Normaal':
+            case 1:
             return 'icon-warning';				
-            case 'Laag':
+            case 0:
             return 'icon-info';
             default:
             return 'icon-primary';

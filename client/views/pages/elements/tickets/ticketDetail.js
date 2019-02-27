@@ -13,9 +13,9 @@ Template.ticketDetail.helpers({
 	},
 	priorityOptions() {
 		return [
-	        {label: 'Laag', value: 'Laag'},
-	        {label: 'Normaal', value: 'Normaal'},
-	        {label: 'Hoog', value: 'Hoog'},
+	        {label: 'Low', value: 0},
+	        {label: 'Normal', value: 1},
+	        {label: 'High', value: 2},
     	];
 	},
 	ownerOptions() {
@@ -43,13 +43,13 @@ Template.ticketDetail.helpers({
 			color = '#f5f5f5';
 		} else {
 			switch(priority) {
-			    case 'Hoog':
+			    case 2:
 			        color = '#ed5565';
 			        break;
-			    case 'Normaal':
+			    case 1:
 			        color = '#f8ac59';
 			        break;
-			    case 'Laag':
+			    case 0:
 			        color = '#1c84c6';
 			        break;
 			    default:

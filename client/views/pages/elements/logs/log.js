@@ -41,11 +41,11 @@ Template.log.helpers({
 		}
 		if(log.ticket){
 			switch(log.ticket.priority) {
-				case 'Hoog':
+				case 2:
 						return 'btn-danger';
-				case 'Normaal':
+				case 1:
 						return 'btn-warning';				
-				case 'Laag':
+				case 0:
 						return 'btn-info';
 				default:
 						return 'btn-primary';
