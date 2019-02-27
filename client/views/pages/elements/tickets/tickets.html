@@ -31,6 +31,11 @@
 </template>
 
 <template name="ticket">
-        <a id={{_id}} class="list-group-item ticket-link {{#if isActive _id}}list-group-item-active{{/if}}"><span class={{getStatusColor priority}}><i class="fa fa-circle" aria-hidden="true"></i></span>
-            {{title}} </a>
+        <a id={{_id}} class="list-group-item ticket-link {{#if isActive _id}}list-group-item-active{{/if}}">
+                <span class={{getStatusColor priority}}><i class="fa fa-circle" aria-hidden="true"></i></span>
+                {{title}}
+                {{#if owner}}
+                        <span class="badge badge-primary">{{owner}}</span>
+                {{/if}}
+        </a>
 </template>
