@@ -172,19 +172,19 @@ body {
 }
 
 .ticket-chat {
-    background: #7f63f4;
-    color: white;
+    /* background: #7f63f4; */
+    /* color: white; */
 }
 
 .event-chat-ryt .chat-sender .media .media-body .ticket-chat {
-    background: #7f63f4;
-    color: white;
+    /* background: #7f63f4; */
+    /* color: white; */
     border-radius: 5px;
 }
 
 .event-chat-ryt .chat-sender .media .media-body .ticket-chat span::after {
-    border-color: transparent transparent #7f63f4;
-    left: -1.5rem;
+    /* border-color: transparent transparent #7f63f4; */
+    /* left: -1.5rem; */
 }
 
 [contenteditable=true]:empty:before{

@@ -3,18 +3,26 @@
         <div class="media single-message" style="overflow:visible;">
             {{#if isAction this}}
                 {{#if actionPerformed}}
-                <button id="action_{{_id}}" class="btn btn-invert btn-circle btn-send btn-undo-action"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                <button id="action_{{_id}}" class="btn {{btnClass this}} btn-circle btn-send btn-undo-action"><i class="fa fa-check-circle" aria-hidden="true"></i>
                 </button>
                 {{else}}
                 <button id="action_{{_id}}" class="btn btn-invert btn-circle btn-send btn-perform-action"><i class="fa fa-exclamation" aria-hidden="true"></i>
                 </button>
                 {{/if}}
             {{else}}
-                <button class="btn btn-invert btn-circle btn-send" data-toggle="modal" data-target="#{{_id}}-log-modal-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i>
-                </button>
+                {{#if ticket}}
+                    <button class="btn {{btnClass this}} btn-circle btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+                    </button>
+                {{else}}
+                    <button class="btn {{btnClass this}} btn-circle btn-send" data-toggle="modal" data-target="#{{_id}}-log-modal-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                {{/if}}
             {{/if}}
             <div class="media-body" style="overflow:visible;">
-                <div>
+                <div class="ticket-chat" id="tc_{{ticket._id}}">
+                    {{#if ticket.title}}
+                    <h4 class="ticket-chat">{{ticket.title}}</h4>
+                    {{/if}}
                     <span>{{{message}}}</span>
                     <small class="time">{{createdBy}} - {{formatTime createdAt}}</small>
                 </div>

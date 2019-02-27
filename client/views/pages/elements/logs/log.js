@@ -30,5 +30,27 @@ Template.log.events({
 Template.log.helpers({
 	isAction(log) {		
 		return log.actionPerformed !== undefined;
+	},
+	btnClass(log) {
+		if(log.actionPerformed !== undefined){
+			if(log.actionPerformed){
+				return 'btn-success';
+			}else{
+				return 'btn-invert';
+			}
+		}
+		if(log.ticket){
+			switch(log.ticket.priority) {
+				case 'Hoog':
+						return 'btn-danger';
+				case 'Normaal':
+						return 'btn-warning';				
+				case 'Laag':
+						return 'btn-info';
+				default:
+						return 'btn-primary';
+			}
+		}
+		return 'btn-invert';
 	}
 })
