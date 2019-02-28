@@ -48,6 +48,9 @@ Template.ticket.helpers({
     },
     isActive(id){
         return id == Session.get('currentTicketId')
+    },
+    notify(ticket){        
+        return Logs.find({$and:[{_id:{$in:ticket.logs}},{actionPerformed:{$exists:true}},{actionPerformed:false}]}).fetch().length > 0;
     }
 })
 

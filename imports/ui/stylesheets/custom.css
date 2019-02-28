@@ -256,3 +256,10 @@ body {
     z-index: 0;
     top: 0;
   }
+
+.mail-list .list-group-item .badge-notify i {
+    font-size: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    color: #ffffff;
+}
