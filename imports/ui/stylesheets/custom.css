@@ -263,3 +263,11 @@ body {
     padding-right: 0;
     color: #ffffff;
 }
+
+.modal-backdrop {
+    z-index: 10
+}
+
+.modal.fade.show {
+    opacity: 100;
+}

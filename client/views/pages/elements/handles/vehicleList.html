@@ -33,7 +33,7 @@
 </template>
 
 <template name="vehicles">
-    <div class="row vehicle-row" id="{{_id}}">
+    <div class="row vehicle-row" id="{{_id}}" data-toggle="modal" data-target="vehicleDetailModal">
         <div class="col-lg-2">
             {{#if lastLogNotify}}
                 <i style="color:red;" class="fa fa-{{icon}} modal-icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="Laatste Melding {{formatTime lastLog}}"></i>
@@ -51,7 +51,7 @@
 </template>
 
 <template name="vehicleDetail">
-    <div class="tab-content tab-content-default tabcontent-border">
+    <!-- <div class="tab-content tab-content-default tabcontent-border">
         <div class="row pb-3">
             <div class="col-lg-10">
             <h4>{{vd.callsign}}</h4>
@@ -84,5 +84,47 @@
                 {{vd.lastLog}}
             </div>
         </div>
+    </div> -->
+    <div class="modal fade bd-example-modal-lg" id="vehicleDetailModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{vd.callsign}} - {{vd.name}}</h5>
+                    <button type="button" class="close close-modal" data-dismiss="modal"><span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h4>Net:</h4>
+                        </div>
+                        <div class="col-lg-7">
+                            {{vd.subnet}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h4>Last call:</h4>
+                        </div>
+                        <div class="col-lg-7">
+                            {{vd.lastLog}}
+                        </div>
+                    </div>
+                    <div class="event-chat-ryt" style="background-color: #f3f6f9;">
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 750px;">
+                            <ul class="list-group" style="overflow: hidden; width: auto; height: 750px;">
+                            <li class="list-group-item">
+                                <div class="chat-area">
+                                    {{#each logs}}
+                                        {{>log}}
+                                    {{/each}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </template>

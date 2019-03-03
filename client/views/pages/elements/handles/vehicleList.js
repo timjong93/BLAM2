@@ -30,12 +30,11 @@ Template.vehicleList.events({
     Template.vehicleList.open = !Template.vehicleList.open
   },
   'input #vehicle-search': function (event, templateInstance) {
-    console.log(event);
     Template.instance().searchQuery.set(event.target.value);
   },
   'click .vehicle-row': function(event, templateInstance) {
-    console.log(e.currentTarget.id);
-  	Session.set('currentVehicleId', event.currentTarget.id);
+    Session.set('currentVehicleId', event.currentTarget.id);
+    $('#vehicleDetailModal').modal('show');
 }
 })
 
@@ -78,5 +77,14 @@ Template.vehicleList.helpers({
 Template.vehicleDetail.helpers({
   vd(){
     return Handles.findOne({_id:Session.get('currentVehicleId')})
-  }
+  },
+  logs() {
+		let logs = Logs.find({handles:Session.get('currentVehicleId')},{sort: {createdAt: -1}}).fetch();
+		logs.map(function(log){
+			log.message = log.message.replace(/(BATA-[0-9]*)/ig, '<span class="label label-primary">$1</span>');
+			log.ticket = Tickets.findOne({logs:log._id}, {fields: {title:1}});
+			return log;
+		});
+		return logs
+	  }
 })
