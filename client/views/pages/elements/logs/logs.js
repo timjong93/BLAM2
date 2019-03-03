@@ -16,6 +16,12 @@ Template.logs.events({
 	}
 });
 
+Template.vehicleList.onRendered(function vehicleListOnRendered(){
+	$('.slimScrollDivLogs').slimScroll({
+		height: 'auto'
+	})
+});
+
 Template.logs.helpers({
 	logs() {
 		let searchQuery = Session.get('searchValue')
