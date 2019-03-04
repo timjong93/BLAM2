@@ -31,9 +31,9 @@ Template.logs.helpers({
 						{message:{'$regex':searchQuery, '$options' : 'i'}},
 						{title:{'$regex':searchQuery, '$options' : 'i'}}
 					]
-				},{sort: {createdAt: -1}}).fetch();
+				},{sort: {updatedAt: -1}}).fetch();
 		}else{
-			var logs = Logs.find({},{sort: {createdAt: -1}}).fetch();
+			var logs = Logs.find({},{sort: {updatedAt: -1}}).fetch();
 		}
 		if (logs) {
 			logs.map(function(log){

@@ -188,7 +188,11 @@ body {
     /* background: #7f63f4; */
     /* color: white; */
     border-radius: 5px;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
+}
+
+.event-chat-ryt .chat-area .media-body div>span {
+    min-width: 15rem;
 }
 
 .event-chat-ryt .chat-sender .media .media-body .ticket-chat span::after {
@@ -256,6 +260,10 @@ char-type{
     z-index: 9999;
     margin-left:0;
     width:100%;
+}
+
+.modal {
+    max-height: 90rem;
 }
 
 .fade.in {
