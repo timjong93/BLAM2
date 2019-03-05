@@ -16,7 +16,7 @@ Template.logs.events({
 	}
 });
 
-Template.vehicleList.onRendered(function vehicleListOnRendered(){
+Template.logs.onRendered(function logsOnRendered(){
 	$('.slimScrollDivLogs').slimScroll({
 		height: 'auto'
 	})

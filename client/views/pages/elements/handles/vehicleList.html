@@ -5,13 +5,7 @@
         </a>
         <div class="tab-content tab-content-default tabcontent-border p-1">
             <div class="tab-content tab-content-default tabcontent-border">
-                <h4>Vehicles</h4>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-fw fa-search"></i></span>
-                    </div>
-                    <input type="text" id="vehicle-search" class="form-control" placeholder="Vehicle" aria-label="Assignee">
-                </div>
+                <input type="text" class="form-control input-rounded form-control-sm" id="vehicle-search" placeholder="search" aria-describedby="inputGroupPrepend2">
                 <div class="vehicleList">
                     {{#each handles}}
                     {{> vehicleCategory}}

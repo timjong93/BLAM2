@@ -16,7 +16,7 @@ Template.vehicleList.onCreated(function vehicleListOnCreated() {
 
 Template.vehicleList.onRendered(function vehicleListOnRendered(){
   $('.sidebar-right .vehicleList').slimScroll({
-    height: '40vh'
+    height: '90vh'
   })
 });
 
