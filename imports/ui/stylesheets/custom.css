@@ -323,3 +323,14 @@ char-type{
 .slimScrollDivLogsDetail{
     flex-grow: 1;
 }
+
+.tribute-container li {
+    padding: 0 1rem;
+}
+.tribute-container .highlight {
+    background-color: #673bb7;
+    color: white;
+}
+.tribute-container {
+    background-color: #f3f6f9;
+}

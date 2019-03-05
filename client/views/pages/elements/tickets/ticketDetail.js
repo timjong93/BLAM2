@@ -35,7 +35,11 @@ Template.ticketDetail.helpers({
 		let ticket = Tickets.findOne({_id:ticketId});
 		let logs = Logs.find({_id:{$in:ticket.logs}},{sort: {createdAt: -1}}).fetch();
 		logs.map(function(log){
+			let users = Meteor.users.find().fetch().map((u)=>{return u.username});
+			let userRegex = new RegExp('('+users.join('|')+')','ig');
+			
 			log.message = log.message.replace(/(BATA-[0-9]*)/ig, '<span class="label label-primary">$1</span>');
+			log.message = log.message.replace(userRegex, '<span class="label label-warning">$1</span>');
 			return log;
 		});
 		return logs

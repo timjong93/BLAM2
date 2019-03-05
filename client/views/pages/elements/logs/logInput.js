@@ -22,13 +22,17 @@ const initTribute = function(){
 				if(item.original.col == 'users'){
 					return '<span class="label label-warning" contenteditable="false"><a>' + item.original.key + '</a></span>';
 				}else{
-					return '<span class="label label-primary" contenteditable="false"><a>' + item.original.key + '</a></span>';
+					return '<span class="label label-primary" contenteditable="false"><a>' + item.original.key + ' (' +item.original.value + ')</a></span>';
 				}
 			}
 			return item.original.value;
 		},
 		menuItemTemplate: function (item) {
-			return item.string;
+            if(item.original.col == 'users'){
+			    return '<i class="fa fa-user"></i> '+item.string;
+            }else{
+			    return '<i class="fa fa-car"></i> '+ item.string;
+            }
 		}
 	});
 	this.tribute.attach(Template.instance().find('.log-message'));
