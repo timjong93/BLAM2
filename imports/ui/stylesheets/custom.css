@@ -334,3 +334,7 @@ char-type{
 .tribute-container {
     background-color: #f3f6f9;
 }
+
+.event-chat-ryt .chat-sender .media .media-body div span.label {
+    padding: .5rem .7rem;
+}
