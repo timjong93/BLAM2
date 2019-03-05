@@ -2,22 +2,20 @@
     <div class="event-chat-ryt">
         <div class="flex">
             <div class="logs">
-                <div class="slimScrollDivLogs">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="chat-area">
-                                {{#each logs}}
-                                <!-- {{#if ticket}}
-                                   {{> ticketLog}}
-                                 {{else}}
-                                   {{>log}}
-                                 {{/if}} -->
-                                {{>log}}
-                                {{/each}}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="list-group slimScrollDivLogs">
+                    <li class="list-group-item">
+                        <div class="chat-area">
+                            {{#each logs}}
+                            <!-- {{#if ticket}}
+                               {{> ticketLog}}
+                             {{else}}
+                               {{>log}}
+                             {{/if}} -->
+                            {{>log}}
+                            {{/each}}
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="loginput">
                 {{> logInput}}

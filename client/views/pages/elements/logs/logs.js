@@ -17,8 +17,10 @@ Template.logs.events({
 });
 
 Template.logs.onRendered(function logsOnRendered(){
-	$('.slimScrollDivLogs').slimScroll({
-		height: 'auto'
+	$('.logs').slimScroll({
+		height: 'auto',
+		disableFadeOut: true,
+		alwaysVisible: true
 	})
 });
 

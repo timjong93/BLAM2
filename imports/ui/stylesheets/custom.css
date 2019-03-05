@@ -8,6 +8,8 @@ body {
 
 .content-body .container-fluid {
     padding: 0 3rem 0 0;
+    max-height: calc(100% - 6rem);
+    position:fixed;
 }
 
 .bg-bata {
@@ -25,6 +27,7 @@ body {
 
 .ticketDetail {
     margin-top:1.5rem;
+    height:100%;
 }
 
 .ticketDetail form input {
@@ -86,7 +89,6 @@ body {
 .timeline_content {
     margin-top: 10px;
     max-height: 80vh;
-    overflow: hidden;
 }
 
 @media only screen and (min-width: 1501px){
@@ -262,6 +264,18 @@ char-type{
     width:100%;
 }
 
+.header{
+    z-index:5000;
+}
+
+.modal-backdrop.in{
+    z-index: 4999 !important;
+}
+
+.modal.fade.in{
+    z-index: 5000 !important;
+}
+
 .modal {
     max-height: 90rem;
 }
@@ -300,16 +314,17 @@ char-type{
 
 .slimScrollDiv {
     margin-top:1.5rem;
+    height: calc(100% - 16rem);
 }
 
 .flex{
     display: flex;
     flex-direction: column;
-    height:100%;
+    height: calc(100% - 5rem);
 }
 
 .logs{
-    flex-grow: 1;
+    flex: 1 1 auto;
 }
 
 .card-style:hover, .card:hover{
@@ -337,4 +352,17 @@ char-type{
 
 .event-chat-ryt .chat-sender .media .media-body div span.label {
     padding: .5rem .7rem;
+}
+
+body {
+    position: fixed;
+    width: 100%;
+}
+
+.row.body, .row.body [class*='col-']{
+    height:100%;
+}
+
+.right-box-padding .event-chat-ryt{
+    height: calc(100% - 150px - 203px);
 }
