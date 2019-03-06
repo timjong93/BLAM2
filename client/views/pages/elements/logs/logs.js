@@ -13,14 +13,15 @@ Template.logs.events({
 			'currentTicketId',
 			event.currentTarget.id.replace('tc_','')
 		);
+		$('.slimScrollDivLogsDetail').slimScroll({
+			height: 'auto',
+	});
 	}
 });
 
 Template.logs.onRendered(function logsOnRendered(){
 	$('.logs').slimScroll({
 		height: 'auto',
-		disableFadeOut: true,
-		alwaysVisible: true
 	})
 });
 

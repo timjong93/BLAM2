@@ -1,7 +1,9 @@
 import { Session } from 'meteor/session'
 
 Template.ticket.onRendered(function onTicketRendered(){
-    $('.scrollRow').perfectScrollbar();
+    $('#ticket-list').slimScroll({
+		height: 'auto',
+	});
 });
 
 Template.tickets.helpers({
@@ -62,8 +64,6 @@ Template.ticket.events({
         );
         $('.slimScrollDivLogsDetail').slimScroll({
             height: 'auto',
-            disableFadeOut: true,
-            alwaysVisible: true
-        })
+        });
     }
 });

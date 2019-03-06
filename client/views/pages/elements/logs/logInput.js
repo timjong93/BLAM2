@@ -140,6 +140,9 @@ Template.logInput.events({
             });
             
             Template.instance().find('#log-message').innerHTML = "";
+            $('.slimScrollDivLogsDetail').slimScroll({
+                height: 'auto'
+            });
         }
     });
     

@@ -366,3 +366,7 @@ body {
 .right-box-padding .event-chat-ryt{
     height: calc(100% - 150px - 203px);
 }
+
+.slimScrollDiv {
+    margin-top: 0px;
+}
