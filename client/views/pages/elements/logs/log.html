@@ -14,7 +14,7 @@
                     <button class="btn {{btnClass this}} btn-circle btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
                     </button>
                 {{else}}
-                    <button class="btn {{btnClass this}} btn-circle btn-send" data-toggle="modal" data-target="#{{_id}}-log-modal-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    <button id="log_{{_id}}" class="btn {{btnClass this}} btn-circle btn-send btn-change-to-ticket" data-toggle="modal" data-target="#logToTicketModal"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                     </button>
                 {{/if}}
             {{/if}}
@@ -25,23 +25,6 @@
                     {{/if}}
                     <span>{{{message}}}</span>
                     <small class="time">{{updatedBy}} - {{formatTime updatedAt}}</small>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade bd-example-modal-sm" id="{{_id}}-log-modal-sm" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Convert to ticket</h5>
-                    <button type="button" class="close close-modal" data-dismiss="modal"><span>×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Are you sure you want to convert this log message to a ticket</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-                    <button type="button" id="log_{{_id}}" class="btn btn-primary cnf-change-to-ticket">Change to ticket</button>
                 </div>
             </div>
         </div>

@@ -6,11 +6,6 @@
                     <li class="list-group-item">
                         <div class="chat-area">
                             {{#each logs}}
-                            <!-- {{#if ticket}}
-                               {{> ticketLog}}
-                             {{else}}
-                               {{>log}}
-                             {{/if}} -->
                             {{>log}}
                             {{/each}}
                         </div>
@@ -22,4 +17,5 @@
             </div>
         </div>
     </div>
+    {{> logToTicketModal}}
 </template>
