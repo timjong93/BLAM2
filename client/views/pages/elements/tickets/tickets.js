@@ -60,5 +60,10 @@ Template.ticket.events({
             'currentTicketId',
             event.target.id
         );
+        $('.slimScrollDivLogsDetail').slimScroll({
+            height: 'auto',
+            disableFadeOut: true,
+            alwaysVisible: true
+        })
     }
 });

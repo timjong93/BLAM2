@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            {{#if handles ct._id}}
+            <!-- {{#if handles ct._id}}
             <div class="card">
                 <div class="card-body pb-3">
                     <div class="card-body  p-0">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            {{/if}}
+            {{/if}} -->
             <div class="event-chat-ryt">
                 <div class="slimScrollDivLogsDetail">
                     <ul class="list-group">
@@ -111,8 +111,10 @@
                     <div class="slimScrollRail"
                          style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
                 </div>
+                <div class="loginput">
+                    {{> logInput ticket_id=ct._id}}
+                </div>
             </div>
-            {{> logInput ticket_id=ct._id}}
         </div>
     </div>
     {{/if}}

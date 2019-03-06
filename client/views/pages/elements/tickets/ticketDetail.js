@@ -1,4 +1,6 @@
 Template.ticketDetail.onRendered(function ticketDetailOnRendered(){
+	console.log('ticketDetail rendered');
+	
 	$('.slimScrollDivLogsDetail').slimScroll({
 		height: 'auto',
 		disableFadeOut: true,
