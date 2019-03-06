@@ -13,6 +13,7 @@ this.ticketSchema = new SimpleSchema({
   'handles.$': { type: String },
   logs: {type: Array},
   'logs.$': { type: String },
+  parent: {type:String, optional:true},
   updatedBy: {
         type: String,
         autoValue: function() {

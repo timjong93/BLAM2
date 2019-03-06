@@ -370,3 +370,11 @@ body {
 .slimScrollDiv {
     margin-top: 0px;
 }
+
+.mail-list .list-group-item.sub-ticket {
+    padding-left: 5rem;
+}
+
+.mail-list .list-group-item.list-group-item-active.sub-ticket {
+    padding-left: 4.7rem;
+}

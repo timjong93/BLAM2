@@ -43,4 +43,16 @@
                         <span class="badge badge-danger badge-notify"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
                 {{/if}}
         </a>
+        {{#each children _id}}
+        <a id={{_id}} class="list-group-item sub-ticket ticket-link {{#if isActive _id}}list-group-item-active{{/if}}">
+                <span class={{getStatusColor priority}}><i class="fa fa-circle" aria-hidden="true"></i></span>
+                {{title}}
+                {{#if owner}}
+                        <span class="badge badge-primary">{{owner}}</span>
+                {{/if}}
+                {{#if notify this}}
+                        <span class="badge badge-danger badge-notify"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
+                {{/if}}
+        </a>
+        {{/each}}
 </template>

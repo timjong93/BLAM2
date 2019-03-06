@@ -15,9 +15,9 @@ Template.tickets.helpers({
             logs.forEach(log => {
                 logIds.push(log._id);
             });           
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:-1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}, parent:{$exists:false}}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:-1}}).fetch();
+            return Tickets.find({status:'Open', owner:{$exists:false}, parent:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
         
         
@@ -30,9 +30,9 @@ Template.tickets.helpers({
             logs.forEach(log => {
                 logIds.push(log._id);
             });           
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:-1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}, parent:{$exists:false}}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:-1}}).fetch();
+            return Tickets.find({status:'Open', owner:{$exists:true}, parent:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
     },
     closed_tickets() {
@@ -43,14 +43,17 @@ Template.tickets.helpers({
             logs.forEach(log => {
                 logIds.push(log._id);
             });           
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:-1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten', parent:{$exists:false}}]},{sort:{priority:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Gesloten'},{sort:{priority:-1}}).fetch();
+            return Tickets.find({status:'Gesloten', parent:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
     }
 });
 
 Template.ticket.helpers({
+    children(id){
+        return Tickets.find({parent:id}).fetch()
+    },
     getStatusColor(priority){
         switch(priority) {
             case 2:

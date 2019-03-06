@@ -51,12 +51,12 @@
                                 </div>
 
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i
-                                            class="fa fa-fw fa-clock-o"></i></span>
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i
+                                                class="fa fa-fw fa-file-text"></i></span>
+                                        </div>
+                                        {{> afFieldInput name="parent" options=parentOptions placeholder="Link to ticket"}}
                                     </div>
-                                    {{> afFieldInput name="updatedAt" disabled=true type="datetime-local"}}
-                                </div>
                             </div>
                             {{/autoForm}}
                         </form>

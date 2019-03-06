@@ -1,10 +1,6 @@
 Template.ticketDetail.onRendered(function ticketDetailOnRendered(){
-	console.log('ticketDetail rendered');
-	
 	$('.slimScrollDivLogsDetail').slimScroll({
-		height: 'auto',
-		disableFadeOut: true,
-		alwaysVisible: true
+		height: 'auto'
 	})
 });
 
@@ -32,6 +28,13 @@ Template.ticketDetail.helpers({
 		let options = [];
 		Meteor.users.find().fetch().forEach(function(user){
 			options.push({label: user.username, value: user.username});
+		})
+		return options;
+	},
+	parentOptions() {
+		let options = [];
+		Tickets.find({parent:{$exists:false}}).fetch().forEach(function(ticket){
+			options.push({label: ticket.title, value: ticket._id});
 		})
 		return options;
 	},
