@@ -228,7 +228,7 @@ char-type{
 }
 
 .char-type form{
-    height: 100px;
+    height: 150px;
 
 }
 
@@ -364,7 +364,7 @@ body {
 }
 
 .right-box-padding .event-chat-ryt{
-    height: calc(100% - 150px - 203px);
+    height: calc(100% - 194px - 203px);
 }
 
 .slimScrollDiv {
@@ -377,4 +377,23 @@ body {
 
 .mail-list .list-group-item.list-group-item-active.sub-ticket {
     padding-left: 4.7rem;
+}
+
+/* dark mode */
+[data-theme-version=dark] .event-chat-ryt {
+    background-color: #2b2e37;
+}
+
+[data-theme-version=dark] .mail-list .list-group-item-active{
+    color: #7f63f4;
+    background-color: #323640;
+}
+
+[data-theme-version=dark] .event-chat-ryt .chat-sender .media .media-body .ticket-chat span::after {
+    border-color: transparent transparent #7f63f4;
+}
+
+[data-theme-version=dark] .event-chat-ryt .chat-sender .media .media-body .ticket-chat {
+    background: #7f63f4;
+    color: white;
 }

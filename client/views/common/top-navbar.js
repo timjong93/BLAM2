@@ -6,6 +6,14 @@ Template.topNavbar.events({
   },
   'click .btn-logout': function (event, templateInstance) {
     Meteor.logout();
+  },
+  'click .light-mode':function(){
+    let mode = $('body').attr('data-theme-version');
+    if(mode == 'light'){
+      $('body').attr('data-theme-version','dark');
+    }else{
+      $('body').attr('data-theme-version','light');
+    }
   }
 });
 
