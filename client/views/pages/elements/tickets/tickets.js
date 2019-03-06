@@ -10,7 +10,12 @@ Template.tickets.helpers({
     new_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:-1}}).fetch();
+            let logIds = []
+            const logs= Logs.find({message:{'$regex':searchQuery, '$options' : 'i'}},{fields: {_id: 1}}).fetch();
+            logs.forEach(log => {
+                logIds.push(log._id);
+            });           
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:false}}]},{sort:{priority:-1}}).fetch();
         }else{
             return Tickets.find({status:'Open', owner:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
@@ -20,7 +25,12 @@ Template.tickets.helpers({
     open_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:-1}}).fetch();
+            let logIds = []
+            const logs= Logs.find({message:{'$regex':searchQuery, '$options' : 'i'}},{fields: {_id: 1}}).fetch();
+            logs.forEach(log => {
+                logIds.push(log._id);
+            });           
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Open', owner:{$exists:true}}]},{sort:{priority:-1}}).fetch();
         }else{
             return Tickets.find({status:'Open', owner:{$exists:true}},{sort:{priority:-1}}).fetch();
         }
@@ -28,7 +38,12 @@ Template.tickets.helpers({
     closed_tickets() {
         let searchQuery = Session.get('searchValue')
         if(searchQuery){
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:-1}}).fetch();
+            let logIds = []
+            const logs= Logs.find({message:{'$regex':searchQuery, '$options' : 'i'}},{fields: {_id: 1}}).fetch();
+            logs.forEach(log => {
+                logIds.push(log._id);
+            });           
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten'}]},{sort:{priority:-1}}).fetch();
         }else{
             return Tickets.find({status:'Gesloten'},{sort:{priority:-1}}).fetch();
         }
