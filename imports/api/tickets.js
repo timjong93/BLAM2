@@ -4,7 +4,8 @@ this.Tickets = new Mongo.Collection('tickets');
 
 
 this.ticketSchema = new SimpleSchema({
-  title: {type: String, defaultValue: 'Nieuw Ticket'},
+  title: {type: String, defaultValue: 'New Ticket'},
+  description: {type: String, optional:true},
   owner: {type: String, optional:true},
   status: {type: String, defaultValue: 'Open'},
   priority: {type: Number, defaultValue: 1},
