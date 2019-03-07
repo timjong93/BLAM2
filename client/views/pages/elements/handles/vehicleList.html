@@ -28,17 +28,17 @@
 
 <template name="vehicles">
     <div class="row vehicle-row" id="{{_id}}" data-toggle="modal" data-target="vehicleDetailModal">
-        <div class="col-lg-2">
+        <div class="col-lg-1">
             {{#if lastLogNotify}}
                 <i style="color:red;" class="fa fa-{{icon}} modal-icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="Laatste Melding {{formatTime lastLog}}"></i>
             {{else}}
                 <i class="fa fa-{{icon}} modal-icon"></i>
             {{/if}} 
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             {{callsign}}
         </div>
-        <div class="col-lg-5 text-right">
+        <div class="col-lg-7 text-right">
             {{name}}
         </div>
     </div>

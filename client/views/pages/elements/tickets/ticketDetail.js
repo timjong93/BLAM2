@@ -40,7 +40,7 @@ Template.ticketDetail.helpers({
 	},
 	logs(ticketId){
 		let ticket = Tickets.findOne({_id:ticketId});
-		let logs = Logs.find({_id:{$in:ticket.logs}},{sort: {createdAt: -1}}).fetch();
+		let logs = Logs.find({_id:{$in:ticket.logs}},{sort: {updatedAt: -1}}).fetch();
 		logs.map(function(log){
 			let users = Meteor.users.find().fetch().map((u)=>{return u.username});
 			let userRegex = new RegExp('('+users.join('|')+')','ig');

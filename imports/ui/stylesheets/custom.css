@@ -256,6 +256,8 @@ char-type{
 
 .sidebar-right {
     height: 100%;
+    width: 35rem;
+    right: -35rem;
 }
 
 [data-sidebar-style=mini] .header {
