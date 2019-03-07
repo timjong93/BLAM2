@@ -33,7 +33,7 @@ Template.ticketDetail.helpers({
 	},
 	parentOptions() {
 		let options = [];
-		Tickets.find({parent:{$exists:false}}).fetch().forEach(function(ticket){
+		Tickets.find({parent:{$exists:false}, _id:{$not:Session.get('currentTicketId')}}).fetch().forEach(function(ticket){
 			options.push({label: ticket.title, value: ticket._id});
 		})
 		return options;
