@@ -108,13 +108,13 @@ Template.logInput.events({
         Template.instance().find('#log-message').innerHTML = "";
     },
     'click #new-ticket-btn'(event) {
-        console.log('new-ticket-btn clicked')
         // Prevent default browser form submit
         event.preventDefault();
         
         let logHandles = [];
         
         let message = document.getElementById('log-message').textContent;
+        if(!message) return;
         let messageHandles = message.match(/(BATA-[0-9]*)/ig);
         
         if (messageHandles) {

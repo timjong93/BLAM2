@@ -12,13 +12,17 @@ this.logSchema = new SimpleSchema({
     updatedBy: {
         type: String,
         autoValue: function() {
-            return Meteor.user().username;
+            if(this.isInsert){
+                return Meteor.user().username;
+            }
         }
     },  
     updatedAt: {
         type: Date,
         autoValue: function() {
-            return new Date();
+            if(this.isInsert){
+                return new Date();
+            }
         }
     },  
 });
