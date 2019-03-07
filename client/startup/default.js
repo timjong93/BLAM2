@@ -24,16 +24,16 @@ Meteor.startup(function () {
     hideMethod: 'fadeOut',
   };
   
-  //setup notifications
-  const now = new Date();
-  Tickets.find({ $and: [{ updatedBy: { $not: Meteor.userId() } }] }).observe({
-    added(document) {
-      if (document.updatedAt > now) {
-        toastr.warning(document.title, 'New Ticket:');
-      }
-    },
-    changed(newDocument, oldDocument) {
-      toastr.info(newDocument.title, 'Ticket updated:');
-    },
-  });
+  // //setup notifications
+  // const now = new Date();
+  // Tickets.find({ $and: [{ updatedBy: { $not: Meteor.userId() } }] }).observe({
+  //   added(document) {
+  //     if (document.updatedAt > now) {
+  //       toastr.warning(document.title, 'New Ticket:');
+  //     }
+  //   },
+  //   changed(newDocument, oldDocument) {
+  //     toastr.info(newDocument.title, 'Ticket updated:');
+  //   },
+  // });
 });
