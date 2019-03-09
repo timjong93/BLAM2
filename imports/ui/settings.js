@@ -1,8 +1,6 @@
 var body = $('body');
 var html = $('html');
 
-console.log('lalalalalalalala');
-
 function quixSettings({version, layout, navheaderBg, headerBg, sidebarStyle, sidebarBg, sidebarPosition, headerPosition, containerLayout, direction}) {
     this.version = version || "light";
     this.layout = layout || "vertical";

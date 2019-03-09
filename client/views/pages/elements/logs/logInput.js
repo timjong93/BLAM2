@@ -4,7 +4,37 @@ import Tribute from "tributejs";
 Template.logInput.onRendered(function logInputRendered (){
 	this.autorun(function(){
         initTribute();
-    }.bind(this));	
+    }.bind(this));
+    this.createLog= (ticketId)=>{
+        let logHandles = [];
+        
+        let message = Template.instance().find('#log-message').textContent;
+        if(!message) return;
+        let messageHandles = message.match(/(BATA-[0-9]*)/ig);
+        
+        if (messageHandles) {
+            messageHandles.forEach(function(handle){
+                var handle = Handles.findOne({callsign:{'$regex':handle, '$options' : 'i'}});
+                logHandles.push(handle._id);
+            });
+        }
+        
+        if(ticketId){
+            Logs.insert({
+                message: message,
+                handles:logHandles
+            }, function(err, result){
+                Tickets.update({ _id: ticketId },{ $push: { logs: result, handles: { $each: logHandles } } });
+            });
+        }else{
+            Logs.insert({
+                message: message,
+                handles:logHandles
+            });
+        }
+        
+        Template.instance().find('#log-message').innerHTML = "";
+    };        
 });
 
 const initTribute = function(){
@@ -40,38 +70,25 @@ const initTribute = function(){
 }
 
 Template.logInput.events({
-    'click #new-log-btn'(event) {
+    'keydown .log-message'(event, templateInstance) {
+        if(event.keyCode == 13)
+        {
+            event.preventDefault();           
+            if(templateInstance.data){
+                templateInstance.createLog(templateInstance.data.ticket_id);
+            }else{
+                templateInstance.createLog()
+            }
+        }
+    },
+    'click #new-log-btn'(event, templateInstance) {
         // Prevent default browser form submit
         event.preventDefault();
-        
-        let ticket_id = this.ticket_id;
-        let logHandles = [];
-        
-        let message = Template.instance().find('#log-message').textContent;
-        let messageHandles = message.match(/(BATA-[0-9]*)/ig);
-        
-        if (messageHandles) {
-            messageHandles.forEach(function(handle){
-                var handle = Handles.findOne({callsign:{'$regex':handle, '$options' : 'i'}});
-                logHandles.push(handle._id);
-            });
-        }
-        
-        if(this.ticket_id){
-            Logs.insert({
-                message: message,
-                handles:logHandles
-            }, function(err, result){
-                Tickets.update({ _id: ticket_id },{ $push: { logs: result, handles: { $each: logHandles } } });
-            });
+        if(templateInstance.data){
+            templateInstance.createLog(templateInstance.data.ticket_id);
         }else{
-            Logs.insert({
-                message: message,
-                handles:logHandles
-            });
+            templateInstance.createLog()
         }
-        
-        Template.instance().find('#log-message').innerHTML = "";
     },
     'click #new-action-btn'(event) {
         // Prevent default browser form submit
