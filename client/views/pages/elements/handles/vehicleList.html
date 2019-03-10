@@ -1,8 +1,14 @@
 <template name="vehicleList">
     <div class="sidebar-right">
-        <a class="sidebar-right-trigger text-white">
+        {{#if notificationActive handles}}
+        <a class="sidebar-right-trigger text-white vehicle-notify">
             <i class="fa fa-car"></i>
         </a>
+        {{else}}
+        <a class="sidebar-right-trigger text-white">
+                <i class="fa fa-car"></i>
+            </a>
+        {{/if}}
         <div class="tab-content tab-content-default tabcontent-border p-1">
             <div class="tab-content tab-content-default tabcontent-border">
                 <input type="text" class="form-control input-rounded form-control-sm" id="vehicle-search" placeholder="search" aria-describedby="inputGroupPrepend2">

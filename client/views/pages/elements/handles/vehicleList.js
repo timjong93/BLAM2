@@ -39,6 +39,12 @@ Template.vehicleList.events({
 })
 
 Template.vehicleList.helpers({
+  notificationActive(handles){
+    for (const subnet of handles) {
+      if(subnet.handles.filter(handle => (handle.lastLogNotify)).length > 0) return true;
+    }
+    return false;
+  },
   handles(){
     let searchQuery = Template.instance().searchQuery.get();
     if(searchQuery){

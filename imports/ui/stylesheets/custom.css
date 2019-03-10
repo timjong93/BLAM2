@@ -385,6 +385,14 @@ textarea {
     resize: none; 
 }
 
+.header-clock {
+    min-width: 50px;
+}
+
+.sidebar-right .sidebar-right-trigger.vehicle-notify {
+    background-color: red;
+}
+
 /* dark mode */
 [data-theme-version=dark] .event-chat-ryt {
     background-color: #2b2e37;
