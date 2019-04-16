@@ -49,14 +49,15 @@
                                     </div>
                                     {{> afFieldInput name="priority" options=priorityOptions}}
                                 </div>
-
+                                {{#unless isParent ct._id}}
                                 <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i
-                                                class="fa fa-fw fa-file-text"></i></span>
-                                        </div>
-                                        {{> afFieldInput name="parent" options=parentOptions placeholder="Link to ticket"}}
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-file-text"></i></span>
                                     </div>
+                                    {{> afFieldInput name="parent" options=parentOptions placeholder="Link to ticket"}}
+                                </div>
+                                {{/unless}}
                             </div>
                             <div class="col-lg-12 pl-0">
                                     <div class="input-group mb-3">
@@ -109,6 +110,9 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="chat-area">
+                                {{#if isParent ct._id}}
+                                    <div class="text-muted text-center mb-3" style="width:100%"><span class="label label-pill label-light">This list contains messages from this ticket and underlying children.</span></div>
+                                {{/if}}
                                 {{#each logs ct._id}}
                                 {{>log}}
                                 {{/each}}

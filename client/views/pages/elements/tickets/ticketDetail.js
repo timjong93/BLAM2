@@ -40,7 +40,11 @@ Template.ticketDetail.helpers({
 	},
 	logs(ticketId){
 		let ticket = Tickets.findOne({_id:ticketId});
-		let logs = Logs.find({_id:{$in:ticket.logs}},{sort: {updatedAt: -1}}).fetch();
+		const children = Tickets.find({parent:ticket._id});
+		for (const child of children) {
+			ticket.logs = ticket.logs.concat(child.logs);
+		}
+		const logs = Logs.find({_id:{$in:ticket.logs}},{sort: {updatedAt: -1}}).fetch();
 		logs.map(function(log){
 			let users = Meteor.users.find().fetch().map((u)=>{return u.username});
 			let userRegex = new RegExp('('+users.join('|')+')','ig');
@@ -74,6 +78,9 @@ Template.ticketDetail.helpers({
 			}
 		}
 		return color;
+	},
+	isParent(ticketId){
+		return Tickets.find({parent:ticketId}).fetch().length > 0;
 	}
 
 });
