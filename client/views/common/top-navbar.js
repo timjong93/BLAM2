@@ -26,6 +26,9 @@ Template.topNavbar.helpers({
       },
     currentTime: function() {
         return Chronos.moment().format('HH:mm:ss');
+    },
+    error : function() {
+      return Meteor.status().status !== "connected";
     }
 });
 
