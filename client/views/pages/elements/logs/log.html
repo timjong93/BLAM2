@@ -11,7 +11,7 @@
                 {{/if}}
             {{else}}
                 {{#if ticket}}
-                    <button class="btn {{btnClass this}} btn-circle btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+                    <button id="log_tc_{{ticket._id}}" class="btn {{btnClass this}} btn-circle btn-send btn-ticket-log"><i class="fa fa-file-text" aria-hidden="true"></i>
                     </button>
                 {{else}}
                     <button id="log_{{_id}}" class="btn {{btnClass this}} btn-circle btn-send btn-change-to-ticket" data-toggle="modal" data-target="#logToTicketModal"><i class="fa fa-paper-plane" aria-hidden="true"></i>
