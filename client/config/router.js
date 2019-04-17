@@ -23,3 +23,8 @@ Router.route('/login',
   function() {
     this.render('login');
   });
+
+Router.route('/blam3',
+function() {
+  this.render('blam3');
+});
