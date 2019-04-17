@@ -16,6 +16,7 @@ Template.main.onRendered ( function onMainRendered() {
 
 Template.main.helpers({
     currentTicketId(){
+        console.log(Session.get('currentTicketId'))
         return Session.get('currentTicketId')
     },
 })

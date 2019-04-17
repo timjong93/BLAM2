@@ -80,7 +80,6 @@ Template.ticket.events({
             'currentTicketId',
             event.target.id
         );
-
         /*
         * This be fixed at a later date
         * Somehow height rendering from the scroller library is fired after the render of the template now allowing
@@ -90,7 +89,6 @@ Template.ticket.events({
             $('.slimScrollDivLogsDetail').slimScroll({
                 height: 'auto',
             });
-            console.log('rerender scroll bar')
         }, 1)
     }
 });

@@ -6,7 +6,7 @@ function quixSettings({version, layout, navheaderBg, headerBg, sidebarStyle, sid
     this.layout = layout || "vertical";
     this.navheaderBg = navheaderBg || "color_1";
     this.headerBg = headerBg || "color_1";
-    this.sidebarStyle = sidebarStyle || "full";
+    this.sidebarStyle = "none";
     this.sidebarBg = sidebarBg || "color_1";
     this.sidebarPosition = sidebarPosition || "static";
     this.headerPosition = headerPosition || "static";

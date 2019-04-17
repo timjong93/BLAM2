@@ -459,3 +459,24 @@ textarea {
 .list-group-item {
     padding-top: 0;
 }
+
+@media (max-width: 767px) {
+
+    .header, .header-content {
+        margin: 0 auto !important;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .loginput {
+        display: none;
+    }
+}
+
+html {
+    font-size: 56.25%;
+}
+
+h4.ticket-chat {
+    font-size: 1.1em;
+}
