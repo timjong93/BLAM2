@@ -1,6 +1,5 @@
 <template name="ticketDetail">
-    {{#if ct}}
-    <div class="ticketDetail p-0">
+    <div class="ticketDetail">
         <div class="right-box-padding flex">
             <div class="top">
                 <div class="card">
@@ -60,75 +59,49 @@
                                 {{/unless}}
                             </div>
                             <div class="col-lg-12 pl-0">
-                                    <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
                                             <span class="input-group-text"><i
                                                     class="fa fa-fw fa-sticky-note"></i></span>
-                                            </div>
-                                            {{> afFieldInput name="description" type="textarea" rows=3 placeholder="Description"}}
                                     </div>
+                                    {{> afFieldInput name="description" type="textarea" rows=3
+                                    placeholder="Description"}}
                                 </div>
+                            </div>
                             {{/autoForm}}
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- {{#if handles ct._id}}
-            <div class="card">
-                <div class="card-body pb-3">
-                    <div class="card-body  p-0">
-                        <div class="table-responsive">
-                            <table class="table" style="min-width: 450px;">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Net</th>
-                                    <th>Last call</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{#each handles ct._id}}
-                                <tr>
-                                    <th><i class="fa fa-{{icon}} modal-icon"></i></th>
-                                    <td>{{callsign}}</td>
-                                    <td>{{callsign}}</td>
-                                    <td>{{subnet}} 22</td>
-                                    <td class="color-primary">{{formatTime lastLog}}</td>
-                                </tr>
-                                {{/each}}
-                                </tbody>
-                            </table>
+            <div class="event-chat-ryt">
+                <div class="flex">
+                    <div class="logs">
+                        <div class="slimScrollDivLogsDetail">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="chat-area">
+                                        {{#if isParent ct._id}}
+                                        <div class="text-muted text-center mb-3" style="width:100%"><span
+                                                class="label label-pill label-light">This list contains messages from this ticket and underlying children.</span>
+                                        </div>
+                                        {{/if}}
+                                        {{#each logs ct._id}}
+                                        {{>log}}
+                                        {{/each}}
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="slimScrollBar"
+                                 style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
+                            <div class="slimScrollRail"
+                                 style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            {{/if}} -->
-            <div class="event-chat-ryt">
-                <div class="slimScrollDivLogsDetail">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="chat-area">
-                                {{#if isParent ct._id}}
-                                    <div class="text-muted text-center mb-3" style="width:100%"><span class="label label-pill label-light">This list contains messages from this ticket and underlying children.</span></div>
-                                {{/if}}
-                                {{#each logs ct._id}}
-                                {{>log}}
-                                {{/each}}
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="slimScrollBar"
-                         style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
-                    <div class="slimScrollRail"
-                         style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
-                </div>
-                <div class="loginput">
-                    {{> logInput ticket_id=ct._id}}
+                    <div class="loginput">
+                        {{> logInput ticket_id=ct._id}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {{/if}}
 </template>

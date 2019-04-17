@@ -1,7 +1,5 @@
 Template.ticketDetail.onRendered(function ticketDetailOnRendered(){
-	$('.slimScrollDivLogsDetail').slimScroll({
-		height: 'auto'
-	})
+
 });
 
 Template.ticketDetail.helpers({

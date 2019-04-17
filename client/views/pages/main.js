@@ -10,6 +10,12 @@ import '/imports/ui/stylesheets/custom.css';
 Template.main.onRendered ( function onMainRendered() {
     $('body').removeClass('login-body');
 
-    $('.scrollRow').perfectScrollbar();
+    // $('.scrollRow').perfectScrollbar();
 
 });
+
+Template.main.helpers({
+    currentTicketId(){
+        return Session.get('currentTicketId')
+    },
+})
