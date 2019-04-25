@@ -26,7 +26,7 @@ body {
 }
 
 .ticketDetail {
-    margin-top:1.5rem;
+    padding-top:1.5rem;
     height:100%;
 }
 
@@ -316,17 +316,12 @@ char-type{
 
 .slimScrollDiv {
     margin-top:1.5rem;
-    height: calc(100% - 16rem);
 }
 
 .flex{
     display: flex;
     flex-direction: column;
-    height: calc(100% - 5rem);
-}
-
-.logs{
-    flex: 1 1 auto;
+    height: 100%;
 }
 
 .card-style:hover, .card:hover{
@@ -335,6 +330,8 @@ char-type{
 
 .event-chat-ryt .char-type {
     padding-bottom: 0;
+    position: relative;
+    bottom: initial;
 }
 
 .slimScrollDivLogsDetail{
@@ -361,15 +358,25 @@ body {
     width: 100%;
 }
 
+
 .row.body, .row.body [class*='col-']{
-    height:100%;
+height:100%;
+}
+
+.row.body {
+    width:100%;
+    margin: 0;
+    height: calc( 100% - 6rem);
 }
 
 .right-box-padding .event-chat-ryt{
-    height: calc(100% - 235px - 203px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
 }
 
 .slimScrollDiv {
+    height: 100%;
     margin-top: 0px;
 }
 
@@ -381,8 +388,8 @@ body {
     padding-left: 4.7rem;
 }
 
-textarea { 
-    resize: none; 
+textarea {
+    resize: none;
 }
 
 .header-clock {
@@ -410,4 +417,66 @@ textarea {
 [data-theme-version=dark] .event-chat-ryt .chat-sender .media .media-body .ticket-chat {
     background: #7f63f4;
     color: white;
+}
+
+
+.header-left {
+    line-height: 1em;
+    justify-content: start;
+    align-self: center;
+}
+
+.header-right {
+    display:flex;
+    float: none;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.header-clock {
+    min-width: 5em;
+}
+
+.logs {
+    padding-top: 1.5rem;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.top {
+    margin-top: 0;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    padding-top: 0;
+}
+
+@media (max-width: 767px) {
+
+    .header, .header-content {
+        margin: 0 auto !important;
+        width: 100% !important;
+        height: auto;
+    }
+
+    .loginput {
+        display: none;
+    }
+}
+
+html {
+    font-size: 56.25%;
+}
+
+h4.ticket-chat {
+    font-size: 1.1em;
 }

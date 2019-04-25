@@ -80,8 +80,15 @@ Template.ticket.events({
             'currentTicketId',
             event.target.id
         );
-        $('.slimScrollDivLogsDetail').slimScroll({
-            height: 'auto',
-        });
+        /*
+        * This be fixed at a later date
+        * Somehow height rendering from the scroller library is fired after the render of the template now allowing
+        * the height to be properly calculated = S
+        */
+        window.setTimeout(function () {
+            $('.slimScrollDivLogsDetail').slimScroll({
+                height: 'auto',
+            });
+        }, 1)
     }
 });
