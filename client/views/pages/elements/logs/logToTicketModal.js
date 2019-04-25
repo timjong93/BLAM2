@@ -20,6 +20,7 @@ Template.logToTicketModal.events({
 				'currentTicketId',
 				result
 			);
+			$("#logToTicketModal").remove();
         });
         $("body>.modal-backdrop").remove();
 	},
