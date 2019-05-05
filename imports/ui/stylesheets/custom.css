@@ -480,3 +480,51 @@ html {
 h4.ticket-chat {
     font-size: 1.1em;
 }
+
+.dashboard .loginput {
+    display:none;
+}
+
+.tickercontainer {
+    padding:0;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gp-card-done {
+    background-color: #71d875;
+    color: white;
+}
+
+.gp-card-done .text-muted{
+    color: white!important;
+}
+
+.gp-card-warning {
+    background-color: #ffc107;
+    color: white;
+}
+
+.gp-card-warning .text-muted{
+    color: white!important;
+}
+
+.gp-card-danger {
+    background-color: #ff5274;
+    color: white;
+}
+
+.gp-card-danger .text-muted{
+    color: white!important;
+}
+
+.widget-school-stat .icon  .ticket-counter {
+    height: 10rem;
+    width: 10rem;
+    font-size: 4rem;
+    line-height: 10rem;
+}

@@ -4,6 +4,7 @@ import '/imports/ui/custom.min.js';
 import '/imports/ui/settings.js';
 import '/imports/ui/gleek.js';
 import '/imports/ui/stylesheets/custom.css';
+import '/imports/ui/plugins/webticker/jquery.webticker.min.js'
 
 import '/imports/ui/stylesheets/custom.css';
 

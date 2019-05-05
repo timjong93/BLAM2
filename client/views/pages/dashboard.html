@@ -1,0 +1,158 @@
+<template name="dashboard">
+    <div class="container-fluid dashboard">
+        <div class="row" style="padding-top: 1vh;height:93vh;">
+            <div class="col-lg-2">
+                <div class="row">
+                    <div class="col-lg-12" style="padding-top:0.7em;">
+                        <div class="card" style="height:17vh;">
+                            <div class="card-body widget-school-stat bg-1 rounded">
+                                <div class="text">
+                                    <h2 style="font-size:13rem;">{{newTicketCount}}</h2>
+                                    <p>New</p>
+                                </div>
+                                <div class="icon" style="height:10rem;width:10rem;font-size:5rem;line-height:5rem;">
+                                    <span class="ticket-counter"><i class="fa fa-file-text"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height:17vh;">
+                            <div class="card-body widget-school-stat bg-5 rounded">
+                                <div class="text">
+                                    <h2 style="font-size:13rem;">{{highTicketCount}}</h2>
+                                    <p>High Priority</p>
+                                </div>
+                                <div class="icon">
+                                    <span class="ticket-counter"><i class="fa fa-file-text"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card" style="height:17vh;">
+                            <div class="card-body widget-school-stat bg-4 rounded">
+                                <div class="text">
+                                    <h2 style="font-size:13rem;">{{normalTicketCount}}</h2>
+                                    <p>Normal Priority</p>
+                                </div>
+                                <div class="icon">
+                                    <span class="ticket-counter"><i class="fa fa-file-text"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card" style="height:17vh;">
+                            <div class="card-body widget-school-stat bg-3 rounded">
+                                <div class="text">
+                                    <h2 style="font-size:13rem;">{{lowTicketCount}}</h2>
+                                    <p>Low Priority</p>
+                                </div>
+                                <div class="icon">
+                                    <span class="ticket-counter"><i class="fa fa-file-text"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card" style="height:18vh;">
+                            <div class="card-body widget-school-stat rounded" style="background-color: #4c4c4c;">
+                                <div class="text">
+                                    <h2 style="font-size:14rem;">{{closedTicketCount}}</h2>
+                                    <p>Closed</p>
+                                </div>
+                                <div class="icon">
+                                    <span class="ticket-counter"><i class="fa fa-file-text" style="color: #4c4c4c;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4" style="height:91vh">
+                {{> logs}}
+            </div>
+            <div class="col-lg-6" style="padding-top:0.7em;">
+                <div class="row" style="height:60vh;">
+                    <div class="col-lg-8">
+                        <div class="card ">
+                            <iframe src="https://www.rainviewer.com/map.html?loc=52.05,6.2938,9&oFa=0&oC=0&oU=0&oCS=0&oF=0&oAP=1&rmt=3&c=1&o=50&lm=0&th=1&sm=1&sn=1" width="100%" frameborder="0" style="border:0;height:40vh;" allowfullscreen></iframe>
+                            
+                            <div class="row">
+                                <div class="col-lg-9">
+                                        <div id="weather-size-monitor" style="height:20vh; width: 100%">
+                                                <canvas id="weather-chart" ></canvas>
+                                        </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row" style="padding:1.5rem;">
+                                            <span class="label label-danger" style="color:white;line-height:4.5rem;font-size:4.5rem; min-width:15rem; background-color: #ff5274"><i class="fa fa-thermometer-half"></i> {{weatherData.temperature}}</span>
+                                    </div>
+                                    <div class="row" style="padding:1.5rem;">
+                                            <span class="label label-warning" style="color:white;line-height:4.5rem;font-size:4.5rem; min-width:15rem;"><i class="fa fa-sun-o"></i> {{weatherData.uvIndex}}</span>
+                                    </div>
+                                    <div class="row" style="padding:1.5rem;">
+                                            <span class="label label-info" style="color:white;line-height:4.5rem;font-size:4.5rem; min-width:15rem;"><i class="fa fa-tint"></i> {{weatherData.humidity}}%</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4" style="height:60vh; overflow: hidden;">
+                        <div class="card transparent-card">
+                            <div class="card-body campaign-statistics p-0">
+                                <div class="current-campaign-list" style="margin-top:0;">
+                                    {{#each gpList}}
+                                    {{#if planned}}
+                                    <div class="card mb-3 {{background}}">
+                                        <div class="card-body d-flex">
+                                            <div class="item campaign-status" style="width:30%;">
+                                                    {{formatTime planned}} {{#if formatTime timestamp}}<span class="m-0"> ({{formatTime timestamp}})</span>{{/if}}
+                                            </div>
+                                            <div class="item campaign-details" style="width:70%;">
+                                                <p class="text-muted m-0 ellipsis">{{label}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}}
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                            <div class="card mt-3" style="height:29vh">
+                                    <div class="card-body" style="height:29vh">
+                                        <h4 class="card-title">Lopers</h4>
+                                        <div id="lopers-chart" style="height:24vh;"></div>
+                                    </div>
+                                </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height:5vh;">
+            <div class="col-xl-12">
+                <div class="crypto-ticker card">
+                    <div class="ticker-overview">Status</div>
+                    <div class="tickercontainer" style="height: auto; overflow: hidden;">
+                        <div class="mask">
+                        <ul id="webticker-dark-icons" style="position: relative; overflow: hidden; float: left; font: bold 10px Verdana; list-style-type: none; margin: 0px; padding: 0px; width: 3160.42px; transition-timing-function: linear; transition-duration: 5.53156s; left: -276.578px;">
+                            {{#each vehicleData}}
+                                <li data-update="item4" style="white-space: nowrap; float: left; padding: 0px 7px; line-height:30px;"> {{abbreviation}} - <span class="text-{{status.class}}"> {{status.value}} {{#if status.flag}}({{status.timeElapsed}} min){{/if}} </span></li>
+                            {{/each}}
+                            {{#each vehicleData}}
+                                <li data-update="item4" style="white-space: nowrap; float: left; padding: 0px 7px; line-height:30px;"> {{abbreviation}} - <span class="text-{{status.class}}"> {{status.value}} {{#if status.flag}}({{status.timeElapsed}} min){{/if}} </span></li>
+                            {{/each}}
+                        </ul>
+                        <span class="tickeroverlay-left" style="display: none;">&nbsp;</span>
+                        <span class="tickeroverlay-right" style="display: none;">&nbsp;</span></div></div>
+                        <div class="ticker-overview" style="right:0;">{{currentTime}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>

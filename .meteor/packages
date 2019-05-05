@@ -34,7 +34,7 @@ iron:router
 alanning:roles
 dburles:collection-helpers
 yogiben:admin
-reactive-var@1.0.11
+reactive-var
 momentjs:moment
 mizzao:autocomplete
 tsega:mentions
@@ -50,3 +50,6 @@ aldeed:collection2-core
 coffeescript
 npm-bcrypt@0.8.7
 fourseven:scss
+http
+bshamblen:morrisjs
+jmsalash:chartjs

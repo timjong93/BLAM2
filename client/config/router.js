@@ -28,3 +28,10 @@ Router.route('/blam3',
 function() {
   this.render('blam3');
 });
+
+Router.route('/dashboard',
+function() {
+  this.wait(Meteor.subscribe('logs'));
+  this.wait(Meteor.subscribe('tickets'));
+  this.render('dashboard');
+});

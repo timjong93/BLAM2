@@ -54,5 +54,8 @@ Template.handles.helpers({
 });
 
 Template.registerHelper('formatTime', function(date) {
-    return moment(date).format('HH:mm');
+    let time = moment(date).format('HH:mm');
+    if (time.length < 8){
+        return time;
+    }
 });
