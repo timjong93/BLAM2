@@ -1,0 +1,21 @@
+<template name="logs">
+    <div class="event-chat-ryt">
+        <div class="flex">
+            <div class="logs">
+                <ul class="list-group slimScrollDivLogs">
+                    <li class="list-group-item">
+                        <div class="chat-area">
+                            {{#each logs}}
+                            {{>log}}
+                            {{/each}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="loginput">
+                {{> logInput}}
+            </div>
+        </div>
+    </div>
+    {{> logToTicketModal}}
+</template>

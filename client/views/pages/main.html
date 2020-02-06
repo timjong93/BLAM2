@@ -1,24 +1,17 @@
 <template name="main">
 
-    <!-- {{> pageHeading title='Page one' }} -->
-            {{> topNavbar }}
+    {{> topNavbar }}
 
+    {{>vehicleList}}
 
-    <div class="wrapper wrapper-content animated fadeInRight" style="height:92%;">
-
-            <!-- Page wrapper -->
-
-        <div class="row" style="height:100%;">
-            <div class="col-lg-2" style="height:100%;">
-                {{> handles}}
-            </div>
-            <div class="col-lg-4" style="height:100%;">
-               {{> logs}}
-            </div>
-            <div class="col-lg-6" style="height:100%;">
-                {{> tickets}}
-            </div>
+    <!--<div class="col-lg-2">{{> handles}}</div>-->
+    <div class="row body">
+        <div class="col-lg-4">{{> logs}}</div>
+        <div class="col-lg-8">
+            <div class="col-lg-4">{{> tickets}}</div>
+            {{#if currentTicketId}}
+            <div class="col-lg-8">{{> ticketDetail}}</div>
+            {{/if}}
         </div>
-
-        </div>
+    </div>
 </template>

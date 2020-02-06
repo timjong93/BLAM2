@@ -1,0 +1,107 @@
+<template name="ticketDetail">
+    <div class="ticketDetail">
+        <div class="right-box-padding flex">
+            <div class="top">
+                <div class="card">
+                    <div class="card-body pb-3">
+                        <form class="card-body form p-0">
+                            {{#autoForm collection="Tickets" doc=ct id="ticketDetailForm" type="update" autosave=true}}
+                            <div class="col-lg-6 pl-0">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-comment"></i></span>
+                                    </div>
+                                    <!-- <input type="text" class="form-control" placeholder="Title" aria-label="Title"> -->
+                                    {{> afFieldInput name="title"}}
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-user"></i></span>
+                                    </div>
+                                    {{> afFieldInput name="owner" options=ownerOptions}}
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-map-marker"></i></span>
+                                    </div>
+                                    {{> afFieldInput name='location'}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-tasks"></i></span>
+                                    </div>
+                                    {{> afFieldInput name="status" options=statusOptions}}
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-exclamation"></i></span>
+                                    </div>
+                                    {{> afFieldInput name="priority" options=priorityOptions}}
+                                </div>
+                                {{#unless isParent ct._id}}
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i
+                                            class="fa fa-fw fa-file-text"></i></span>
+                                    </div>
+                                    {{> afFieldInput name="parent" options=parentOptions placeholder="Link to ticket"}}
+                                </div>
+                                {{/unless}}
+                            </div>
+                            <div class="col-lg-12 pl-0">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                            <span class="input-group-text"><i
+                                                    class="fa fa-fw fa-sticky-note"></i></span>
+                                    </div>
+                                    {{> afFieldInput name="description" type="textarea" rows=3
+                                    placeholder="Description"}}
+                                </div>
+                            </div>
+                            {{/autoForm}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="event-chat-ryt">
+                <div class="flex">
+                    <div class="logs">
+                        <div class="slimScrollDivLogsDetail">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="chat-area">
+                                        {{#if isParent ct._id}}
+                                        <div class="text-muted text-center mb-3" style="width:100%"><span
+                                                class="label label-pill label-light">This list contains messages from this ticket and underlying children.</span>
+                                        </div>
+                                        {{/if}}
+                                        {{#each logs ct._id}}
+                                        {{>log}}
+                                        {{/each}}
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="slimScrollBar"
+                                 style="background: rgb(198, 200, 201); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 353.551px;"></div>
+                            <div class="slimScrollRail"
+                                 style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; left: 1px;"></div>
+                        </div>
+                    </div>
+                    <div class="loginput">
+                        {{> logInput ticket_id=ct._id}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

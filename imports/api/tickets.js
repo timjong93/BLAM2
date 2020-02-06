@@ -4,15 +4,17 @@ this.Tickets = new Mongo.Collection('tickets');
 
 
 this.ticketSchema = new SimpleSchema({
-  title: {type: String, defaultValue: 'Nieuw Ticket'},
+  title: {type: String, defaultValue: 'New Ticket'},
+  description: {type: String, optional:true},
   owner: {type: String, optional:true},
   status: {type: String, defaultValue: 'Open'},
-  priority: {type: String, optional:true},
+  priority: {type: Number, defaultValue: 1},
   location: {type: String, optional:true},
   handles: {type: Array, defaultValue: []},
   'handles.$': { type: String },
   logs: {type: Array},
   'logs.$': { type: String },
+  parent: {type:String, optional:true},
   updatedBy: {
         type: String,
         autoValue: function() {

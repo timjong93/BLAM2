@@ -1,43 +1,44 @@
 <template name="topNavbar">
-    <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #2f4050">
-            <ul class="nav navbar-top-links navbar-left">
-                <li>
-                    <a class="" style="margin-left: 40px; font-size: 20px; padding: 15px 10px;">
-                        BLAM-II
-                    </a>
-                </li>
-
-            </ul>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <a class="">
-                        {{currentTime}}
-                    </a>
-                </li>
-                <li>
-                    <a class="">
-                        <i class="fa fa-user"></i> {{username}} - {{function}}
-                    </a>
-                </li>
-                <li>
-                    <a class="btn-fullscreen">
-                        <i class="fa fa-desktop"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="btn-logout">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-    </div>
+        <div class="header">    
+                <div class="header-content">
+                    <div class="header-left">
+                        BLAM II
+                    </div>
+                    <div class="header-right">
+                        <ul>
+                            <li class="icons">
+                                <input type="text" class="form-control input-rounded form-control-sm" id="search-field" placeholder="search" aria-describedby="inputGroupPrepend2">
+                            </li>
+                            <li class="icons">
+                                <a class="header-clock">
+                                    {{currentTime}}
+                                </a>
+                            </li>
+                            <li class="icons">
+                                <a class="">
+                                        <i class="fa fa-user"></i> {{username}} - {{function}}
+                                </a>
+                            </li>
+                            <li class="icons">
+                                <a href="/admin">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                            </li>
+                            <li class="icons">
+                                    <a class="light-mode" href="#">
+                                        <i class="fa fa-lightbulb-o"></i>
+                                    </a>
+                                </li>
+                            <li class="icons">
+                                <a href="#" class="btn-logout">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{#if error}}
+                <div class="text-center m-3" style="width:100%"><span class="label label-pill label-danger">Error connecting to server....</span></div>
+            {{/if}}
 </template>

@@ -1,35 +1,35 @@
-Template.topNavbar.rendered = function(){
+import { Session } from 'meteor/session'
 
-    // FIXED TOP NAVBAR OPTION
-    // Uncomment this if you want to have fixed top navbar
-    // $('body').addClass('fixed-nav');
-    // $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
-
-};
+Template.topNavbar.events({
+  'input #search-field': function (event, templateInstance) {
+    Session.set('searchValue', event.currentTarget.value);
+  },
+  'click .btn-logout': function (event, templateInstance) {
+    Meteor.logout();
+  },
+  'click .light-mode':function(){
+    let mode = $('body').attr('data-theme-version');
+    if(mode == 'light'){
+      $('body').attr('data-theme-version','dark');
+    }else{
+      $('body').attr('data-theme-version','light');
+    }
+  }
+});
 
 Template.topNavbar.helpers({
     username: function() {
-        return Meteor.user().username;
+      if(Meteor.user()) return Meteor.user().username;
       },
     function: function() {
-        return Meteor.user().profile.function;
+      if(Meteor.user() && Meteor.user().profile) return Meteor.user().profile.function;
       },
     currentTime: function() {
         return Chronos.moment().format('HH:mm:ss');
+    },
+    error : function() {
+      return Meteor.status().status !== "connected";
     }
 });
 
-Template.topNavbar.events({
 
-  'click .btn-fullscreen': function (event, template) {
-    if (BigScreen.enabled) {
-        BigScreen.toggle();
-    }
-  },
-  'click .btn-logout': function (event, template) {
-    if (BigScreen.enabled) {
-        Meteor.logout();
-    }
-  },
-
-});

@@ -1,0 +1,32 @@
+<template name="log">
+    <div class="chat-sender"> 
+        <div class="media single-message" style="overflow:visible;">
+            {{#if isAction this}}
+                {{#if actionPerformed}}
+                <button id="action_{{_id}}" class="btn {{btnClass this}} btn-circle btn-send btn-undo-action"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                </button>
+                {{else}}
+                <button id="action_{{_id}}" class="btn btn-primary btn-circle btn-send btn-perform-action"><i class="fa fa-exclamation" aria-hidden="true"></i>
+                </button>
+                {{/if}}
+            {{else}}
+                {{#if ticket}}
+                    <button id="log_tc_{{ticket._id}}" class="btn {{btnClass this}} btn-circle btn-send btn-ticket-log"><i class="fa fa-file-text" aria-hidden="true"></i>
+                    </button>
+                {{else}}
+                    <button id="log_{{_id}}" class="btn {{btnClass this}} btn-circle btn-send btn-change-to-ticket" data-toggle="modal" data-target="#logToTicketModal"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    </button>
+                {{/if}}
+            {{/if}}
+            <div class="media-body" style="overflow:visible;">
+                <div class="ticket-chat" id="tc_{{ticket._id}}">
+                    {{#if ticket.title}}
+                    <h4 class="ticket-chat">{{ticket.title}}</h4>
+                    {{/if}}
+                    <span>{{{message}}}</span>
+                    <small class="time">{{updatedBy}} - {{formatTime updatedAt}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

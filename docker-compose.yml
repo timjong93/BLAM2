@@ -1,0 +1,14 @@
+blam2:
+    image: timjong93/blam2:latest
+    ports:
+        - "1337:3000"
+    links:
+        - blam2-mongo
+    environment:
+    - MONGO_URL=mongodb://blam2-mongo:27017/blam
+    - ROOT_URL=http://blam.tjongsma.nl
+blam2-mongo:
+    image: mongo:4.0
+    command: mongod --smallfiles --quiet --logpath=/dev/null
+    volumes:
+    - ~/data:/data/db
