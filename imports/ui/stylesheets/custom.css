@@ -1,3 +1,7 @@
+@import preflight;
+@import components;
+@import utilities;
+
 body {
     font-family: "Poppins", sans-serif;
 }
@@ -45,7 +49,7 @@ body {
 }
 
 .login-body {
-    background: url(https://imgo.rgcdn.nl/ea6d5e2d013347f394d94ac33dcac5d6/opener/De-Batavierenrace-van-Nijmegen-naar-Enschede.jpg);
+    background: url('https://imgo.rgcdn.nl/ea6d5e2d013347f394d94ac33dcac5d6/opener/De-Batavierenrace-van-Nijmegen-naar-Enschede.jpg');
     background-size: cover;
 }
 
