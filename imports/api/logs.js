@@ -1,5 +1,7 @@
 import { Mongo } from 'meteor/mongo';
-this.Logs = new Mongo.Collection('logs');
+import { publishPagination } from 'meteor/kurounin:pagination';
+
+Logs = new Mongo.Collection('logs');
 
 this.logSchema = new SimpleSchema({
     message: {type: String},
@@ -41,8 +43,9 @@ Logs.before.insert(function (userId, doc) {
 });
 
 if (Meteor.isServer) {
-    // This code only runs on the server
-    Meteor.publish('logs', function logPublication() {
-        return Logs.find();
-    });
+    // // This code only runs on the server
+    // Meteor.publish('logs', function logPublication() {
+    //     return Logs.find();
+    // });
+    publishPagination(Logs);
 }

@@ -66,6 +66,7 @@ iron:url@1.1.0
 jquery@1.11.11
 kadira:blaze-layout@2.3.0
 keepnox:perfect-scrollbar@0.6.8
+kurounin:pagination@1.2.0
 lamhieu:meteorx@2.0.1
 lamhieu:unblock@1.0.0
 launch-screen@1.1.1
