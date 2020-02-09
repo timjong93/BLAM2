@@ -2,6 +2,12 @@
 Template.logs.onCreated(function handlesOnCreated() {
   let template = Template.instance();
   template.searchQuery = new ReactiveVar();
+  template.limit = new ReactiveVar(30);
+
+  this.autorun(() => {
+    this.subscribe('logs',
+      this.limit.get());
+  });
 });
 
 Template.logs.events({
@@ -13,6 +19,12 @@ Template.logs.events({
 			'currentTicketId',
 			event.currentTarget.id.replace('tc_','')
 		);
+	},
+	'scroll .slimScrollDivLogs': function(event, templateInstance) {
+		let listElem = event.currentTarget;
+		if (listElem.scrollTop + listElem.clientHeight >= listElem.scrollHeight) {
+			templateInstance.limit.set(templateInstance.limit.get() + 10);
+		}
 	}
 });
 

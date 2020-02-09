@@ -42,7 +42,11 @@ Logs.before.insert(function (userId, doc) {
 
 if (Meteor.isServer) {
     // This code only runs on the server
-    Meteor.publish('logs', function logPublication() {
-        return Logs.find();
+    Meteor.publish('logs', function logPublication(limit) {
+        return Logs.find({},
+            {
+                sort: {updatedAt: -1},
+                limit: limit
+            });
     });
 }
