@@ -40,9 +40,22 @@ Logs.before.insert(function (userId, doc) {
     })
 });
 
+// This code only runs on the server
 if (Meteor.isServer) {
-    // This code only runs on the server
-    Meteor.publish('logs', function logPublication() {
-        return Logs.find();
+    Meteor.publish('logs', function logPublication(limit, filter) {
+        let query = {}
+        if(filter && filter.length > 0){
+            query = {'$or':[
+                {message:{'$regex':filter, '$options' : 'i'}},
+                {title:{'$regex':filter, '$options' : 'i'}}
+            ]}
+        }
+        return Logs.find(
+            query,
+            {
+                sort: {updatedAt: -1},
+                limit: limit
+            }
+        );
     });
 }
