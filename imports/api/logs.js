@@ -1,4 +1,6 @@
 import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema'
+
 this.Logs = new Mongo.Collection('logs');
 
 this.logSchema = new SimpleSchema({

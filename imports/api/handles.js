@@ -1,4 +1,7 @@
 import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema'
+SimpleSchema.extendOptions(['autoform']);
+
 this.Handles = new Mongo.Collection('handles');
 
 this.handleSchema = new SimpleSchema({
