@@ -23,6 +23,7 @@
     "@babel/runtime": "^7.8.4",
     "adminlte": "^2.4.1",
     "jquery": "^2.2.4",
+    "simpl-schema": "^1.5.7",
     "tributejs": "^3.7.3"
   },
   "devDependencies": {

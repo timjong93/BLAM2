@@ -27,7 +27,6 @@ kadira:blaze-layout
 zimme:active-route
 dynamic-import@0.5.1
 ecmascript@0.14.0
-aldeed:simple-schema
 accounts-password@1.5.2
 accounts-ui@1.3.1
 iron:router
@@ -44,10 +43,9 @@ flowkey:bigscreen
 matb33:collection-hooks
 underscore@1.0.10
 aldeed:autoform
-aldeed:collection2
-aldeed:collection2-core
 coffeescript
 npm-bcrypt@0.9.3
 fourseven:scss
 lamhieu:unblock
 yogiben:admin
+aldeed:collection2-core
