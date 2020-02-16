@@ -38,6 +38,13 @@ Tickets.allow({
   update() { return true; }
 });
 
+this.Tickets.before.update((userID, doc, fieldNames, modifier, options)=>{
+  if(doc.status == 'Open' && modifier.$set.status == 'Gesloten'){
+    modifier.$set.closedAt = new Date();
+  }
+
+})
+
 
 if (Meteor.isServer) {
   // This code only runs on the server

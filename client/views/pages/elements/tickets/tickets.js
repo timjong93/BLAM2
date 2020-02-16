@@ -43,9 +43,9 @@ Template.tickets.helpers({
             logs.forEach(log => {
                 logIds.push(log._id);
             });           
-            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten', parent:{$exists:false}}]},{sort:{updatedAt:-1}}).fetch();
+            return Tickets.find({$and:[{$or:[{title:{'$regex':searchQuery, '$options' : 'i'}},{logs:{$in:logIds}},{owner:{'$regex':searchQuery, '$options' : 'i'}}]},{status:'Gesloten', parent:{$exists:false}}]},{sort:{closedAt:-1}}).fetch();
         }else{
-            return Tickets.find({status:'Gesloten', parent:{$exists:false}},{sort:{updatesAt:-1}}).fetch();
+            return Tickets.find({status:'Gesloten', parent:{$exists:false}},{sort:{closedAt:-1}}).fetch();
         }
     }
 });
