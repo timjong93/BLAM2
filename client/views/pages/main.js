@@ -9,14 +9,14 @@ import '/imports/ui/stylesheets/custom.css';
 
 Template.main.onRendered ( function onMainRendered() {
     $('body').removeClass('login-body');
-
-    // $('.scrollRow').perfectScrollbar();
-
 });
 
 Template.main.helpers({
     currentTicketId(){
-        console.log(Session.get('currentTicketId'))
         return Session.get('currentTicketId')
     },
 })
+
+Template.registerHelper('formatTime', function(date) {
+    return moment(date).format('HH:mm');
+});
