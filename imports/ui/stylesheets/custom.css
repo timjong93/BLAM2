@@ -480,3 +480,6 @@ html {
 h4.ticket-chat {
     font-size: 1.1em;
 }
+.event-chat-ryt .chat-sender .media .media-body div .time {
+    bottom: -15px;
+}
