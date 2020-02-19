@@ -8,12 +8,6 @@ Template.logs.events({
   'input #search_logs': function (event, templateInstance) {
     Template.instance().searchQuery.set(event.currentTarget.value);
 	},
-	'click .ticket-chat': function (event, templateInstance) {
-		Session.set(
-			'currentTicketId',
-			event.currentTarget.id.replace('tc_','')
-		);
-	}
 });
 
 Template.logs.onRendered(function logsOnRendered(){

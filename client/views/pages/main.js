@@ -15,6 +15,9 @@ Template.main.helpers({
     currentTicketId(){
         return Session.get('currentTicketId')
     },
+    ct(){
+		return Tickets.findOne({_id:Session.get('currentTicketId')});
+	},
 })
 
 Template.registerHelper('formatTime', function(date) {

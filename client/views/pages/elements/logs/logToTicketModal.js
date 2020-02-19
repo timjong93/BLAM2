@@ -1,27 +1,21 @@
-import { Session } from "meteor/session";
-
-Template.logToTicketModal.helpers({
-    logToConvert(){
-        return Session.get('logToTicketId');
-    }
-})
+Template.logToTicketModal.onRendered(function(){
+    let tmpl = this;
+    $(tmpl.firstNode).modal('show'); //this will trigger the modal when it gets rendered.
+});
 
 Template.logToTicketModal.events({
     'click .close-modal'(event) {
-		$("body>.modal-backdrop").remove();
+		Blaze.remove(this);
 	},
 	'click .cnf-change-to-ticket'(event) {
-		let log = Logs.findOne({_id:Session.get('logToTicketId')});
 		Tickets.insert({
-			logs:[log._id],
-			handles:log.handles
+			logs:[this._id],
+			handles:this.handles
 		},function(err,result){
 			Session.set(
 				'currentTicketId',
 				result
 			);
-			$("#logToTicketModal").remove();
         });
-        $("body>.modal-backdrop").remove();
 	},
 });

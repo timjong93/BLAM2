@@ -1,25 +1,16 @@
 Template.log.events({
-	'click .close-modal'(event) {
-		$("body>.modal-backdrop").remove();
-	},
 	'click .btn-change-to-ticket'(event) {
-		Session.set('logToTicketId', event.currentTarget.id.replace('log_',''));
+		Blaze.renderWithData(Template.logToTicketModal, this, document.body);
 	},
 	'click .btn-ticket-log'(event) {
-		Session.set(
-			'currentTicketId',
-			event.currentTarget.id.replace('log_tc_','')
-		)
+		console.log(this);
+		Session.set('currentTicketId', this._id);
 	},
 	'click .btn-perform-action'(event) {
-		console.log('perform action', event.currentTarget.id.replace('action_',''));
-		
-		Logs.update(event.currentTarget.id.replace('action_',''), { $set: { actionPerformed: true } });
+		Logs.update(this._id, { $set: { actionPerformed: true } });
 	},
-	'click .btn-undo-action'(event) {
-		console.log('perform action', event.currentTarget.id.replace('action_',''));
-		
-		Logs.update(event.currentTarget.id.replace('action_',''), { $set: { actionPerformed: false } });
+	'click .btn-undo-action'(event) {	
+		Logs.update(this._id, { $set: { actionPerformed: false } });
 	},
 });
 

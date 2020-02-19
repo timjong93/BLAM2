@@ -1,14 +1,4 @@
-Template.ticketDetail.onRendered(function ticketDetailOnRendered(){
-
-});
-
 Template.ticketDetail.helpers({
-	currentTicketId(){
-		return Session.get('currentTicketId')
-	},
-	ct(){
-		return Tickets.findOne({_id:Session.get('currentTicketId')});
-	},
 	statusOptions() {
 		return [
 	        {label: 'Open', value: 'Open'},
@@ -36,13 +26,12 @@ Template.ticketDetail.helpers({
 		})
 		return options;
 	},
-	logs(ticketId){
-		let ticket = Tickets.findOne({_id:ticketId});
-		const children = Tickets.find({parent:ticket._id});
+	logs(){
+		const children = Tickets.find({parent:this._id});
 		for (const child of children) {
-			ticket.logs = ticket.logs.concat(child.logs);
+			this.logs = [].concat(this.logs).concat(child.logs);
 		}
-		const logs = Logs.find({_id:{$in:ticket.logs}},{sort: {updatedAt: -1}}).fetch();
+		const logs = Logs.find({_id:{$in:this.logs}},{sort: {updatedAt: -1}}).fetch();
 		logs.map(function(log){
 			let users = Meteor.users.find().fetch().map((u)=>{return u.username});
 			let userRegex = new RegExp('('+users.join('|')+')','ig');
@@ -53,15 +42,14 @@ Template.ticketDetail.helpers({
 		});
 		return logs
 	},
-	handles(ticketId){
-		let ticket = Tickets.findOne({_id:ticketId});
-		return Handles.find({_id:{$in:ticket.handles}},{sort: {callsign: -1}}).fetch();
+	handles(){
+		return Handles.find({_id:{$in:this.handles}},{sort: {callsign: -1}}).fetch();
 	},
-	getStatusColor(status, priority){
-		if (status === 'Gesloten') {
+	getStatusColor(){
+		if (this.status === 'Gesloten') {
 			color = '#f5f5f5';
 		} else {
-			switch(priority) {
+			switch(this.priority) {
 			    case 2:
 			        color = '#ed5565';
 			        break;
@@ -77,8 +65,8 @@ Template.ticketDetail.helpers({
 		}
 		return color;
 	},
-	isParent(ticketId){
-		return Tickets.find({parent:ticketId}).fetch().length > 0;
+	isParent(){
+		return Tickets.find({parent:this._id}).fetch().length > 0;
 	}
 
 });

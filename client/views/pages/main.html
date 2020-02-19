@@ -3,14 +3,12 @@
     {{> topNavbar }}
 
     {{> handles}}
-
-    <!--<div class="col-lg-2">{{> handles}}</div>-->
     <div class="row body">
         <div class="col-lg-4">{{> logs}}</div>
         <div class="col-lg-8">
             <div class="col-lg-4">{{> tickets}}</div>
             {{#if currentTicketId}}
-            <div class="col-lg-8">{{> ticketDetail}}</div>
+            <div class="col-lg-8">{{> ticketDetail ct}}</div>
             {{/if}}
         </div>
     </div>
