@@ -1,6 +1,6 @@
 import { Session } from 'meteor/session'
 
-Template.ticket.onRendered(function onTicketRendered(){
+Template.tickets.onRendered(function onTicketRendered(){
     $('#ticket-list').slimScroll({
 		height: 'auto',
 	});
@@ -47,48 +47,5 @@ Template.tickets.helpers({
         }else{
             return Tickets.find({status:'Gesloten', parent:{$exists:false}},{sort:{priority:-1}}).fetch();
         }
-    }
-});
-
-Template.ticket.helpers({
-    children(id){
-        return Tickets.find({parent:id}).fetch()
-    },
-    getStatusColor(priority){
-        switch(priority) {
-            case 2:
-            return 'icon-danger';
-            case 1:
-            return 'icon-warning';				
-            case 0:
-            return 'icon-info';
-            default:
-            return 'icon-primary';
-        }
-    },
-    isActive(id){
-        return id == Session.get('currentTicketId')
-    },
-    notify(ticket){        
-        return Logs.find({$and:[{_id:{$in:ticket.logs}},{actionPerformed:{$exists:true}},{actionPerformed:false}]}).fetch().length > 0;
-    }
-})
-
-Template.ticket.events({
-    'click .ticket-link'(event) {
-        Session.set(
-            'currentTicketId',
-            event.target.id
-        );
-        /*
-        * This be fixed at a later date
-        * Somehow height rendering from the scroller library is fired after the render of the template now allowing
-        * the height to be properly calculated = S
-        */
-        window.setTimeout(function () {
-            $('.slimScrollDivLogsDetail').slimScroll({
-                height: 'auto',
-            });
-        }, 1)
     }
 });

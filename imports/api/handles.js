@@ -5,6 +5,7 @@ this.handleSchema = new SimpleSchema({
   callsign: {type: String},
   name: {type: String},
   subnet: {type:String},
+  motoTrboId: {type:String, optional:true},
   lastLog: {
     type: Date,
     optional: true,
@@ -56,4 +57,21 @@ if (Meteor.isServer) {
   Meteor.publish('handles', function handlePublication() {
     return Handles.find();
   });
+  Meteor.methods({
+    triggerLocationRefresh(radioId){
+      HTTP.call('PUT', Meteor.settings.motoTrboApi, {
+        data: {
+          radio: radioId
+        }
+      }, 
+      (err,res)=>{
+        if(!err){
+          console.log(`Succesfully triggered refresh for ${radioId}`);
+        }else{
+          console.error(`Error while triggering refresh for ${radioId}`);
+          console.error(err);
+        }
+      });
+    }
+  })
 }

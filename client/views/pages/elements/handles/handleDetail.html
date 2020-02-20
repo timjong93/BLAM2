@@ -1,0 +1,47 @@
+<template name="handleDetail">
+    <div class="modal fade bd-example-modal-lg" id="vehicleDetailModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{callsign}} - {{name}}</h5>
+                    <button type="button" class="close close-modal" data-dismiss="modal"><span>×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h4>Net:</h4>
+                        </div>
+                        <div class="col-lg-7">
+                            {{subnet}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h4>Last call:</h4>
+                        </div>
+                        <div class="col-lg-7">
+                            {{formatTime lastLog}}
+                        </div>
+                    </div>
+                    <div class="event-chat-ryt" style="background-color: #f3f6f9;">
+                        <div class="">
+                            <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="chat-area">
+                                    {{#each logs}}
+                                        {{>log}}
+                                    {{/each}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>

@@ -1,0 +1,23 @@
+<template name="handle">
+    <div class="row vehicle-row" id="{{_id}}" data-toggle="modal" data-target="vehicleDetailModal">
+        <div class="col-lg-1 vehicle-detail-trigger">
+            {{#if lastLogNotify}}
+                <i style="color:red;" class="fa fa-{{icon}} modal-icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="Laatste Melding {{formatTime lastLog}}"></i>
+            {{else}}
+                <i class="fa fa-{{icon}} modal-icon"></i>
+            {{/if}} 
+        </div>
+        <div class="col-lg-4">
+            {{callsign}}
+        </div>
+        <div class="col-lg-5 text-right">
+            {{name}}
+        </div>
+        <div class="col-lg-1 text-right gps-trigger">
+            {{#if motoTrboId}}
+            <i class="fa fa-location-arrow modal-icon"></i>
+            {{/if}}
+        </div>
+        
+    </div>
+</template>

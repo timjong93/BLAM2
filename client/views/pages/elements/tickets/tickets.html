@@ -1,55 +1,30 @@
 <template name="tickets">
-    <div class="email-left-box px-0 bg-white        ">
-            <div id="ticket-list">
+        <div class="email-left-box px-0 bg-white        ">
+                <div id="ticket-list">
                         <div class="intro-title d-flex justify-content-between m-0">
-                                        <h5>New</h5>
-                                    </div>
-                                    <div class="mail-list mt-4">
-                                            {{#each new_tickets}}
-                                            {{> ticket}}
-                                            {{/each}}
-                                    </div>
-                                <div class="intro-title d-flex justify-content-between m-0">
-                                    <h5>Open</h5>
-                                </div>
-                                <div class="mail-list mt-4">
-                                        {{#each open_tickets}}
+                                <h5>New</h5>
+                        </div>
+                        <div class="mail-list mt-4">
+                                {{#each new_tickets}}
                                         {{> ticket}}
-                                        {{/each}}
-                                </div>
-                                <div class="intro-title d-flex justify-content-between">
-                                        <h5>Closed</h5>
-                                    </div>
-                                    <div class="mail-list mt-4">
-                                        {{#each closed_tickets}}
+                                {{/each}}
+                        </div>
+                        <div class="intro-title d-flex justify-content-between m-0">
+                                <h5>Open</h5>
+                        </div>
+                        <div class="mail-list mt-4">
+                                {{#each open_tickets}}
                                         {{> ticket}}
-                                        {{/each}}
-                                    </div>
-            </div>     
+                                {{/each}}
+                        </div>
+                        <div class="intro-title d-flex justify-content-between">
+                                <h5>Closed</h5>
+                        </div>
+                        <div class="mail-list mt-4">
+                                {{#each closed_tickets}}
+                                        {{> ticket}}
+                                {{/each}}
+                        </div>
+                </div>     
         </div>
-</template>
-
-<template name="ticket">
-        <a id={{_id}} class="list-group-item ticket-link {{#if isActive _id}}list-group-item-active{{/if}}">
-                <span class={{getStatusColor priority}}><i class="fa fa-circle" aria-hidden="true"></i></span>
-                {{title}}
-                {{#if owner}}
-                        <span class="badge badge-primary">{{owner}}</span>
-                {{/if}}
-                {{#if notify this}}
-                        <span class="badge badge-danger badge-notify"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
-                {{/if}}
-        </a>
-        {{#each children _id}}
-        <a id={{_id}} class="list-group-item sub-ticket ticket-link {{#if isActive _id}}list-group-item-active{{/if}}">
-                <span class={{getStatusColor priority}}><i class="fa fa-circle" aria-hidden="true"></i></span>
-                {{title}}
-                {{#if owner}}
-                        <span class="badge badge-primary">{{owner}}</span>
-                {{/if}}
-                {{#if notify this}}
-                        <span class="badge badge-danger badge-notify"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
-                {{/if}}
-        </a>
-        {{/each}}
 </template>

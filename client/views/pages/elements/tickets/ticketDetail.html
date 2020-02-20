@@ -5,14 +5,13 @@
                 <div class="card">
                     <div class="card-body pb-3">
                         <form class="card-body form p-0">
-                            {{#autoForm collection="Tickets" doc=ct id="ticketDetailForm" type="update" autosave=true}}
+                            {{#autoForm collection="Tickets" doc=this id="ticketDetailForm" type="update" autosave=true}}
                             <div class="col-lg-6 pl-0">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i
                                             class="fa fa-fw fa-comment"></i></span>
                                     </div>
-                                    <!-- <input type="text" class="form-control" placeholder="Title" aria-label="Title"> -->
                                     {{> afFieldInput name="title"}}
                                 </div>
 
@@ -80,12 +79,12 @@
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <div class="chat-area">
-                                        {{#if isParent ct._id}}
+                                        {{#if isParent}}
                                         <div class="text-muted text-center mb-3" style="width:100%"><span
                                                 class="label label-pill label-light">This list contains messages from this ticket and underlying children.</span>
                                         </div>
                                         {{/if}}
-                                        {{#each logs ct._id}}
+                                        {{#each logs}}
                                         {{>log}}
                                         {{/each}}
                                     </div>
@@ -98,7 +97,7 @@
                         </div>
                     </div>
                     <div class="loginput">
-                        {{> logInput ticket_id=ct._id}}
+                        {{> logInput ticket_id=this._id}}
                     </div>
                 </div>
             </div>
