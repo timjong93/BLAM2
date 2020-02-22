@@ -1,16 +1,42 @@
 <template name="logToTicketModal">
-    <div class="modal fade bd-example-modal-sm" id="logToTicketModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+    <div class="modal fade bd-example-modal-lg" id="logToTicketModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Convert to ticket</h5>
                     <button type="button" class="close close-modal" data-dismiss="modal"><span>×</span>
                     </button>
                 </div>
-                <div class="modal-body">Are you sure you want to convert this log message to a ticket</div>
+                <div class="modal-body">
+                    <p>Select a ticket or create a new one.</p>
+                    <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-fw fa-file-text"></i></span>
+                            </div>
+                            <select id="ticketToAppend" placeholder="Append to ticket" autocomplete="on" class="form-control">
+                                {{#each ticketOptions}}
+                                    <option value={{value}}>{{label}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-primary cnf-append-to-ticket">Append to ticket </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-primary cnf-change-to-ticket">Create new ticket</button>
+                    </div>
+                </div>
+                    
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary cnf-change-to-ticket">Change to ticket</button>
                 </div>
             </div>
         </div>
