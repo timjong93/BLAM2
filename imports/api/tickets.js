@@ -26,7 +26,8 @@ this.ticketSchema = new SimpleSchema({
       autoValue: function() {
           return new Date();
       },  
-  },  
+  },
+  closedAt: {type: Date, optional:true}    
 });
 
 Tickets.attachSchema(this.ticketSchema);
@@ -37,9 +38,17 @@ Tickets.allow({
 });
 
 
+
+
 if (Meteor.isServer) {
   // This code only runs on the server
   Meteor.publish('tickets', function ticketPublication() {
     return Tickets.find();
   });
+
+  this.Tickets.before.update((userID, doc, fieldNames, modifier, options)=>{
+    if(doc.status == 'Open' && modifier.$set.status == 'Gesloten'){
+      modifier.$set.closedAt = new Date();
+    }
+  })
 }

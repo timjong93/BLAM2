@@ -3,7 +3,6 @@ Template.log.events({
 		Blaze.renderWithData(Template.logToTicketModal, this, document.body);
 	},
 	'click .btn-ticket-log'(event) {
-		console.log(this);
 		Session.set('currentTicketId', this._id);
 	},
 	'click .btn-perform-action'(event) {

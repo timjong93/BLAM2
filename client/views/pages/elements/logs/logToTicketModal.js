@@ -4,10 +4,10 @@ Template.logToTicketModal.onRendered(function(){
 });
 
 Template.logToTicketModal.events({
-    'click .close-modal'(event) {
-		Blaze.remove(this);
+    'click .close-modal'(event, template) {
+		deleteModal(template);
 	},
-	'click .cnf-change-to-ticket'(event) {
+	'click .cnf-change-to-ticket'(event, template) {
 		Tickets.insert({
 			logs:[this._id],
 			handles:this.handles
@@ -17,14 +17,15 @@ Template.logToTicketModal.events({
 				result
 			);
 		});
-		Blaze.remove(this);
+		deleteModal(template);
 	},
 	'click .cnf-append-to-ticket'(event, template) {
+		console.log($('#ticketToAppend')[0].value);
 		Tickets.update({
 			_id: $('#ticketToAppend')[0].value},
 			{ $push: { logs: this._id, handles: { $each: this.handles } } 
 		});
-		Blaze.remove(this);
+		deleteModal(template);
 	},
 });
 
@@ -37,3 +38,8 @@ Template.logToTicketModal.helpers({
 		return options;
 	},
 })
+
+const deleteModal = (t) => {
+	Blaze.remove(t.view);
+	$('.modal-backdrop').remove()
+}
