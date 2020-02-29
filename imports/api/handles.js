@@ -5,11 +5,6 @@ this.handleSchema = new SimpleSchema({
   callsign: {type: String},
   name: {type: String},
   subnet: {type:String},
-  motoTrboId: {type:String, optional:true},
-  lastLog: {
-    type: Date,
-    optional: true,
-    },
   icon: {
     type: String,
     allowedValues: ['car', 'bus', 'bicycle','motorcycle','ambulance','user','laptop'],
@@ -26,6 +21,41 @@ this.handleSchema = new SimpleSchema({
       }
     }
   },
+  radio: {
+    type:Boolean, 
+    defaultValue:true,
+    label: "This handle has a radio",
+  },
+  motoTrboId: {
+    type:String, 
+    optional:true,
+    label: "MotoTRBO Id of the handle's radio for API",
+  },
+  manualLocationTrigger: {
+    type:Boolean, 
+    defaultValue:false,
+    label: "The location of this handle can be updated manually",
+  },
+  locationMode: {
+    type: String,
+    allowedValues: ['none', 'pull', 'interval'],
+    autoform: {
+      options: {
+        none: "None",
+        pull: "Pull",
+        interval: 'Interval',
+      }
+    }
+  },
+  locationInterval: {
+    type: Number,
+    optional: true
+  },
+  lastLog: {
+    type: Date,
+    optional: true,
+    },
+
   lastLogLimit: {
     type: Number,
     label: "Time limit for notification if no interaction is logged in minutes, empty means disable notification",

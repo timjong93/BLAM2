@@ -1,6 +1,7 @@
 import '/imports/api/logs.js';
 import '/imports/api/handles.js';
 import '/imports/api/tickets.js';
+import '/imports/api/locationSettings.js';
 
 // Run this when the meteor app is started
 Meteor.startup(function () {

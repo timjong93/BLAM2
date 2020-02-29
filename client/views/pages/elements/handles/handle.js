@@ -6,3 +6,10 @@ Template.handle.events({
         Blaze.renderWithData(Template.handleDetail, this, document.body);
     }
 });
+
+Template.handle.helpers({
+    showLocationTrigger() {
+        console.log(this);
+        return this.radio && this.motoTrboId && this.manualLocationTrigger
+    }
+})

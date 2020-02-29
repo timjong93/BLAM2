@@ -7,6 +7,9 @@ Template.topNavbar.events({
   'click .btn-logout': function (event, templateInstance) {
     Meteor.logout();
   },
+  'click .btn-syncGPSSettings': function (event, templateInstance) {
+    Meteor.call('pushGPSSettings');
+  },
   'click .light-mode':function(){
     let mode = $('body').attr('data-theme-version');
     if(mode == 'light'){
