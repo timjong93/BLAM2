@@ -5,6 +5,7 @@ Template.logInput.onRendered(function logInputRendered (){
 	this.autorun(function(){
         initTribute();
     }.bind(this));
+
     this.createLog= (ticketId)=>{
         let logHandles = [];
         
@@ -38,13 +39,14 @@ Template.logInput.onRendered(function logInputRendered (){
 });
 
 const initTribute = function(){
-	let handles = Handles.find({},{sort: {callsign: 1}}).fetch().map(function(h){return {key:h.callsign,value:h.name, col:'handles'}});
+	let handles = Handles.find({},{sort: {callsign: 1}}).fetch().map(function(h){return {key:h.callsign, value:h.name, icon:h.icon, col:'handles',}});
 	let users = Meteor.users.find({},{sort:{username:1}}).fetch().map(function(u){return {key:u.username,value:u.username, col:'users'}});
 	if (this.tribute) {
 		this.tribute.detach(Template.instance().find('.log-message'));
 	}
 	this.tribute = new Tribute({
-		autocompleteMode: true,
+        // autocompleteMode: true,
+        trigger: '@',
 		values: handles.concat(users),
 		selectTemplate: function (item) {
 			if (typeof item === 'undefined') return null;
@@ -59,9 +61,10 @@ const initTribute = function(){
 		},
 		menuItemTemplate: function (item) {
             if(item.original.col == 'users'){
-			    return '<i class="fa fa-user"></i> '+item.string;
+			    return `<i class="fa fa-user"></i> ${item.string}`;
             }else{
-			    return '<i class="fa fa-car"></i> '+ item.string;
+                console.log(item);
+			    return `<i class="fa fa-${item.original.icon}"></i> ${item.string}`;
             }
 		}
 	});
