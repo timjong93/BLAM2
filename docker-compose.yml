@@ -1,14 +1,25 @@
-blam2:
-    image: timjong93/blam2:latest
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-        - "1337:3000"
-    links:
-        - blam2-mongo
+      - '1337:3000'
+    depends_on:
+      - mongo
     environment:
-    - MONGO_URL=mongodb://blam2-mongo:27017/blam
-    - ROOT_URL=http://blam.tjongsma.nl
-blam2-mongo:
-    image: mongo:4.0
-    command: mongod --smallfiles --quiet --logpath=/dev/null
+      ROOT_URL: ${APP_ROOT_URL:-http://localhost}
+      MONGO_URL: mongodb://mongo:27017/meteor
+      PORT: 3000
+
+  mongo:
+    image: mongo:latest
+    command:
+      - --storageEngine=wiredTiger
     volumes:
-    - ~/data:/data/db
+      - data:/data/db
+
+volumes:
+  data:
