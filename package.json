@@ -20,7 +20,7 @@
   },
   "author": "Tim Jongsma",
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
+    "@babel/runtime": "^7.16.7",
     "adminlte": "^2.4.1",
     "jquery": "^2.2.4",
     "tributejs": "^3.7.3"

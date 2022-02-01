@@ -6,10 +6,12 @@
     <div class="row body">
         <div class="col-lg-4">{{> logs}}</div>
         <div class="col-lg-8">
-            <div class="col-lg-4">{{> tickets}}</div>
-            {{#if currentTicketId}}
-            <div class="col-lg-8">{{> ticketDetail ct}}</div>
-            {{/if}}
+            <div class="row">
+                <div class="col-lg-4">{{> tickets}}</div>
+                {{#if currentTicketId}}
+                <div class="col-lg-8">{{> ticketDetail ct}}</div>
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>

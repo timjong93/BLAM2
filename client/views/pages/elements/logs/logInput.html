@@ -1,17 +1,26 @@
 <template name="logInput">
     <div class="char-type">
-            <form class="d-flex justify-content-center">
-                <div id="log-message" class="log-message form-control" contenteditable="true"  style="height:100%;"></div>
-                {{#unless ticket_id}}
-                <button type="submit" id="new-ticket-btn" class="btn btn-invert btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
-                </button>
-                {{/unless}}
-                {{#if ticket_id}}
-                <button type="submit" id="new-action-btn" class="btn btn-invert btn-send"><i class="fa fa-check" aria-hidden="true"></i>
-                </button>
-                {{/if}}
-                <button type="submit" id="new-log-btn" class="btn btn-primary btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
-                </button>
+            <form>
+                <div class="flex-box">
+                    <div class="flex-fill">
+                            <div id="log-message" class="log-message form-control" contenteditable="true"  style="height:100%;"></div>
+                    </div>
+                    <div class="log-buttons">
+                            {{#unless ticket_id}}
+                            <button type="submit" id="new-ticket-btn" class="btn btn-invert btn-send"><i class="fa fa-file-text" aria-hidden="true"></i>
+                            </button>
+                            {{/unless}}
+                            {{#if ticket_id}}
+                            <button type="submit" id="new-action-btn" class="btn btn-invert btn-send"><i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            {{/if}}
+                            <button type="submit" id="new-log-btn" class="btn btn-primary btn-send"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+                
+                
+                
             </form>
         </div>
 </template>
